@@ -21398,17 +21398,13 @@ Name: income, dtype: object</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[60]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Reviewer #1 suggested</span>
 
 <span class="n">income_reviewer1</span> <span class="o">=</span> <span class="n">income_raw</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="s1">&#39;&gt;50K&#39;</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">income_reviewer1</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-
-<span class="c1">#Reviewer2 suggested Label encoder </span>
-<span class="c1">#http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html</span>
-    
 </pre></div>
 
 </div>
@@ -21419,7 +21415,7 @@ Name: income, dtype: object</pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[60]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[11]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -21931,18 +21927,18 @@ $$ F_{\beta} = (1 + \beta^2) \cdot \frac{precision \cdot recall}{\left( \beta^2 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[61]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">##here the model always predicts an individual made more than $50,000*</span>
 
-<span class="n">n_records</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="c1"># Total number of records</span>
+<span class="c1">#n_records = len(data)# Total number of records</span>
 <span class="c1">#n_greater_50k = sum(data.income==&#39;&gt;50K&#39;)# Number of records where individual&#39;s income is more than $50,000</span>
 <span class="c1">#n_at_most_50k = sum(data.income==&#39;&lt;=50K&#39;)# Number of records where individual&#39;s income is at most $50,000</span>
 
 <span class="c1"># TODO: Calculate accuracy</span>
-<span class="c1">#Reviewer2 pointed </span>
-<span class="n">accuracy</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">n_greater_50k</span><span class="p">)</span><span class="o">/</span><span class="n">n_records</span> <span class="c1">#accuracy=# of items in a class labeled correctly/all item in that class</span>
+
+<span class="n">accuracy</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">n_greater_50k</span><span class="p">)</span><span class="o">/</span><span class="n">n_greater_50k</span> <span class="c1">#accuracy=# of items in a class labeled correctly/all item in that class</span>
 <span class="k">print</span> <span class="s2">&quot;Accuracy:&quot;</span><span class="p">,</span> <span class="n">accuracy</span>
 
 <span class="c1"># TODO: Calculate F-score using the formula above for beta = 0.5</span>
@@ -21974,11 +21970,11 @@ $$ F_{\beta} = (1 + \beta^2) \cdot \frac{precision \cdot recall}{\left( \beta^2 
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Accuracy: 0.247843969749
+<pre>Accuracy: 1.0
 precision: 0.247843969749
 recall: 1.0
 F-score: 0.291729135432
-Naive Predictor: [Accuracy score: 0.2478, F-score: 0.2917]
+Naive Predictor: [Accuracy score: 1.0000, F-score: 0.2917]
 </pre>
 </div>
 </div>
@@ -21992,7 +21988,7 @@ Naive Predictor: [Accuracy score: 0.2478, F-score: 0.2917]
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Answer-1">Answer 1<a class="anchor-link" href="#Answer-1">&#182;</a></h3><p>Accuracy: 0.247843969749 #reviewer2 pointed wrong, fixed it.<br>
+<h3 id="Answer-1">Answer 1<a class="anchor-link" href="#Answer-1">&#182;</a></h3><p>Accuracy: 1.0<br>
 F-score: 0.291729135432</p>
 
 </div>
@@ -22101,7 +22097,7 @@ Getting the right ratio of samples to number of features is important, since a t
 <li><em>What makes this model a good candidate for the problem, given what you know about the data?</em><br>
 A:When the dataset has both numerical and categorical data. This doesn't requre to transpose categorical data to numerical. </li>
 </ul>
-<h3 id="3.-Support-Vector-Machines-(SVM)">3. Support Vector Machines (SVM)<a class="anchor-link" href="#3.-Support-Vector-Machines-(SVM)">&#182;</a></h3><p>Ref:<a href="http://scikit-learn.org/stable/modules/svm.html">http://scikit-learn.org/stable/modules/svm.html</a></p>
+<h3 id="9.-Support-Vector-Machines-(SVM)">9. Support Vector Machines (SVM)<a class="anchor-link" href="#9.-Support-Vector-Machines-(SVM)">&#182;</a></h3><p>Ref:<a href="http://scikit-learn.org/stable/modules/svm.html">http://scikit-learn.org/stable/modules/svm.html</a></p>
 <ul>
 <li><em>Describe one real-world application in industry where the model can be applied.</em><br>
 A: Housing price prediction where there is a lot of samples with many dimensions. </li>
@@ -22120,26 +22116,9 @@ SVMs do not directly provide probability estimates, these are calculated using a
 <li><em>What makes this model a good candidate for the problem, given what you know about the data?</em><br>
 A: Capability of Non-linear classification with high dimensional spaces like this income prediction with many dimension. </li>
 </ul>
-<h4 id="Reviewer1-added:">Reviewer1 added:<a class="anchor-link" href="#Reviewer1-added:">&#182;</a></h4><p>There are <a href="https://www.quora.com/What-are-the-advantages-of-different-classification-algorithms">several issues</a> to consider in choosing <a href="http://sebastianraschka.com/faq/docs/best-ml-algo.html">the best machine learning algorithm</a> for your problem, and it's not always easy to know which model to use — <a href="http://sebastianraschka.com/faq/docs/model-selection-in-datascience.html">with model selection</a> it's often a good idea to try out simpler methods like Logistic Regression as a benchmark, and then move on to <a href="http://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html">other approaches</a> such as SVM, Decision Trees, and Ensemble methods.</p>
+<h3 id="Reviewer1-added:">Reviewer1 added:<a class="anchor-link" href="#Reviewer1-added:">&#182;</a></h3><p>There are <a href="https://www.quora.com/What-are-the-advantages-of-different-classification-algorithms">several issues</a> to consider in choosing <a href="http://sebastianraschka.com/faq/docs/best-ml-algo.html">the best machine learning algorithm</a> for your problem, and it's not always easy to know which model to use — <a href="http://sebastianraschka.com/faq/docs/model-selection-in-datascience.html">with model selection</a> it's often a good idea to try out simpler methods like Logistic Regression as a benchmark, and then move on to <a href="http://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html">other approaches</a> such as SVM, Decision Trees, and Ensemble methods.</p>
 <p>Further reading:
 You can also check out the udacity blog for more about <a href="http://blog.udacity.com/2016/06/machine-learning-everywhere-netflix-personalized-medicine-fraud-prevention.html">the general applications of machine learning models</a>, and this guide from <a href="https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-algorithm-choice">microsoft azure</a> on choosing an algorithm.</p>
-<h4 id="Reviewer2-added:">Reviewer2 added:<a class="anchor-link" href="#Reviewer2-added:">&#182;</a></h4><h5 id="Gaussian-Naive-Bayes:">Gaussian Naive Bayes:<a class="anchor-link" href="#Gaussian-Naive-Bayes:">&#182;</a></h5><ul>
-<li>Correct widely used in spam detection as this is great for word processing.  </li>
-<li>As a limitation of Naive Bayes is the assumption of independent predictors. In real life, it is almost impossible that we get a set of features which are completely independent. As it does desire independent features, however this really isn't too big of an issue in practice.  </li>
-<li>Also nice idea to use it here, as it does have a fast compute time.  </li>
-</ul>
-<h5 id="Decision-Tree:">Decision Tree:<a class="anchor-link" href="#Decision-Tree:">&#182;</a></h5><ul>
-<li>Correct Very fast!!!</li>
-<li>With your comment of "easy to use graphics to interprete/visualize" Can look at <a href="http://scikit-learn.org/stable/modules/generated/sklearn.tree.export_graphviz.html">export_graphviz</a>  </li>
-<li>We can definitely see here that our Decision Tree has an overfitting issue here and this is typical with Decision Trees and Random Forests.  </li>
-<li>Another great thing that Decision Tree and tree methods in sklearn gives us is a feature importance. Which we use later on.</li>
-</ul>
-<h5 id="Support-Vector-Machine:">Support Vector Machine:<a class="anchor-link" href="#Support-Vector-Machine:">&#182;</a></h5><ul>
-<li>Good! Typically much slower, but the kernel trick makes it very awesome to find non-linearity in the data.  </li>
-<li>Excellent catch with "Uses a subset of training points in the decision function (called support vectors), so it is also memory efficient." They are memory efficient, as they only have to remember the support vectors.  </li>
-<li>Also note here the SVM output parameter are not really interpretable.  </li>
-<li>Correct with "SVMs do not directly provide probability estimates, these are calculated using an expensive five-fold cross-validation". We can use <em>probability = True</em> to calculate probabilities, however very slow as it used five fold CV  </li>
-</ul>
 
 </div>
 </div>
@@ -22210,7 +22189,7 @@ You can also check out the udacity blog for more about <a href="http://blog.udac
 
     
     <span class="c1"># TODO: Compute F-score on the the first 300 training samples</span>
-    <span class="n">results</span><span class="p">[</span><span class="s1">&#39;f_train&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fbeta_score</span><span class="p">(</span><span class="n">y_train</span><span class="p">[:</span><span class="mi">300</span><span class="p">],</span> <span class="n">predictions_train</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span> <span class="c1">#average=&#39;macro&#39;,&#39;micro&#39;, weighted, None)</span>
+    <span class="n">results</span><span class="p">[</span><span class="s1">&#39;f_train&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fbeta_score</span><span class="p">(</span><span class="n">y_train</span><span class="p">[:</span><span class="mi">300</span><span class="p">],</span> <span class="n">predictions_train</span><span class="p">[:</span><span class="mi">300</span><span class="p">],</span> <span class="n">beta</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span> <span class="c1">#average=&#39;macro&#39;,&#39;micro&#39;, weighted, None)</span>
 
         
     <span class="c1"># TODO: Compute F-score on the test set</span>
@@ -22276,10 +22255,8 @@ You can also check out the udacity blog for more about <a href="http://blog.udac
 <span class="c1">#reproducible by others, make sure to set random states for any classifiers</span>
 <span class="c1">#where they can be specified.===&gt; so I added random_state=42</span>
 
-
 <span class="c1"># TODO: Initialize the three models</span>
-<span class="n">clf_A</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span> <span class="c1">#Reviewer1 suggested to set a random state. </span>
-<span class="c1">#Reviewer#2 mentioned &quot;As NB doesn&#39;t need a random state, as this model gives the same results each time.&quot;</span>
+<span class="n">clf_A</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span> <span class="c1">#Reviewer1 suggested to set a random state</span>
 <span class="n">clf_B</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span> <span class="c1">##Reviewer1 suggested to set a random state</span>
 <span class="n">clf_C</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span> <span class="c1">##Reviewer1 suggested to set a random state HOWEVER no option for this GaussianNB to set random state</span>
 
@@ -25419,19 +25396,6 @@ AAAAAElFTkSuQmCC
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Reviewer2's-note-on-Hyperparameter-gamma-and-C">Reviewer2's note on Hyperparameter gamma and C<a class="anchor-link" href="#Reviewer2's-note-on-Hyperparameter-gamma-and-C">&#182;</a></h4><ul>
-<li>A large C gives you low bias and high variance. Low bias because you penalize the cost of misclassification a lot. A small C gives you higher bias and lower variance.</li>
-<li>A small gamma gives you a pointed bump in the higher dimensions, a large gamma gives you a softer, broader bump. So a small gamma will give you low bias and high variance while a large gamma will give you higher bias and low variance.</li>
-</ul>
-
-</div>
-</div>
-</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[55]:</div>
@@ -25507,14 +25471,6 @@ AAAAAElFTkSuQmCC
 <span class="n">grid_obj</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">scoring</span><span class="o">=</span><span class="n">scorer</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">pre_dispatch</span><span class="o">=</span><span class="s1">&#39;2*n_jobs&#39;</span><span class="p">)</span>
 <span class="c1">#If n_jobs=-1, then the number of jobs is set to the number of cores.</span>
 
-<span class="c1">#Reviewer2&#39;s note: to make sure the labels are evenly split between the validation sets.</span>
-<span class="c1">#http://scikit-learn.org/stable/modules/generated/sklearn.model_selection.StratifiedShuffleSplit.html</span>
-
-<span class="c1">#from sklearn.cross_validation import StratifiedShuffleSplit</span>
-<span class="c1">#cv = StratifiedShuffleSplit(y_train_50Kp, ...)</span>
-<span class="c1">#grid_obj = GridSearchCV(clf, parameters, cv=cv,scoring=scorer, n_jobs=-1, pre_dispatch=&#39;2*n_jobs&#39;)</span>
-
-
 <span class="c1"># TODO: Fit the grid search object to the training data and find the optimal parameters</span>
 <span class="n">grid_fit</span> <span class="o">=</span> <span class="n">grid_obj</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train_50Kp</span><span class="p">)</span>
 
@@ -25588,7 +25544,7 @@ Final F-score on the testing data: 0.6887
 <tbody>
 <tr>
 <td style="text-align:center">Accuracy Score</td>
-<td style="text-align:center">0.25</td>
+<td style="text-align:center">1</td>
 <td style="text-align:center">0.83</td>
 <td style="text-align:center">0.84</td>
 </tr>
@@ -26518,10 +26474,9 @@ F-score on testing data: 0.6316
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
 <p>There is not much of difference in terms of Accuracy and F-Score between full set of features and reduced set of features, while training time was significantly shorter. I would chose reduced data as training set if the training data is very large to handle.</p>
-<h4 id="Reviewer1-added-comment:-Feature-reduction-is-a-great-way-to-fight-the-curse-of-dimentionality.">Reviewer1 added comment: Feature reduction is a great way to fight the curse of dimentionality.<a class="anchor-link" href="#Reviewer1-added-comment:-Feature-reduction-is-a-great-way-to-fight-the-curse-of-dimentionality.">&#182;</a></h4><p><a href="https://en.wikipedia.org/wiki/Curse_of_dimensionality">https://en.wikipedia.org/wiki/Curse_of_dimensionality</a></p>
-<h4 id="Reviewer1-added-recursive-feature-elimination-(RFE)-and-selectKBest">Reviewer1 added recursive feature elimination (RFE) and selectKBest<a class="anchor-link" href="#Reviewer1-added-recursive-feature-elimination-(RFE)-and-selectKBest">&#182;</a></h4><p><a href="http://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.RFE.html">http://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.RFE.html</a></p>
+<h1 id="Reviewer1-added-comment:Feature-reduction-is-a-great-way-to-fight-the-curse-of-dimentionality.">Reviewer1 added comment:Feature reduction is a great way to fight the curse of dimentionality.<a class="anchor-link" href="#Reviewer1-added-comment:Feature-reduction-is-a-great-way-to-fight-the-curse-of-dimentionality.">&#182;</a></h1><p><a href="https://en.wikipedia.org/wiki/Curse_of_dimensionality">https://en.wikipedia.org/wiki/Curse_of_dimensionality</a></p>
+<h1 id="Reviewer1-added-recursive-feature-elimination-(RFE)-and-selectKBest">Reviewer1 added recursive feature elimination (RFE) and selectKBest<a class="anchor-link" href="#Reviewer1-added-recursive-feature-elimination-(RFE)-and-selectKBest">&#182;</a></h1><p><a href="http://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.RFE.html">http://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.RFE.html</a></p>
 <p><a href="http://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.SelectKBest.html">http://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.SelectKBest.html</a></p>
-<p><a href="http://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.SelectPercentile.html#sklearn.feature_selection.SelectPercentile">http://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.SelectPercentile.html#sklearn.feature_selection.SelectPercentile</a>    (Reviewer2 added)</p>
 <p>And additional reading on feature selection techniques:</p>
 <p><a href="http://machinelearningmastery.com/feature-selection-machine-learning-python/">http://machinelearningmastery.com/feature-selection-machine-learning-python/</a></p>
 
