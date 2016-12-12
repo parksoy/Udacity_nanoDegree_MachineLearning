@@ -23,7 +23,7 @@ from sklearn.datasets import fetch_lfw_people
 from sklearn.grid_search import GridSearchCV
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
-from sklearn.decomposition import RandomizedPCA
+from sklearn.decomposition import PCA #RandomizedPCA is deprecated
 from sklearn.svm import SVC
 
 # Display progress logs on stdout
@@ -65,7 +65,7 @@ n_components = 150
 
 print "Extracting the top %d eigenfaces from %d faces" % (n_components, X_train.shape[0])
 t0 = time()
-pca = RandomizedPCA(n_components=n_components, whiten=True).fit(X_train)
+pca = PCA(n_components=n_components, whiten=True).fit(X_train) #RandomizedPCA deprecated 
 print "done in %0.3fs" % (time() - t0)
 
 eigenfaces = pca.components_.reshape((n_components, h, w))
@@ -120,6 +120,7 @@ def plot_gallery(images, titles, h, w, n_row=3, n_col=4):
         pl.xticks(())
         pl.yticks(())
 
+        
 
 # plot the result of the prediction on a portion of the test set
 
@@ -139,3 +140,20 @@ eigenface_titles = ["eigenface %d" % i for i in range(eigenfaces.shape[0])]
 plot_gallery(eigenfaces, eigenface_titles, h, w)
 
 pl.show()
+
+
+#Quiz in mini project=how much first and second PC can explain
+print "pca.components_:\n", pca.components_.shape #this is (150, 1850)
+first_pc=pca.components_[0]
+second_pc=pca.components_[1]
+print "first_pc:", first_pc #x': first out of 150 pca's. shape (150,0)
+print "second_pc:", second_pc #y':second out of 150 pca's. shape (150,0)
+
+
+print "pca.explained_variance_ratio_:\n:", pca.explained_variance_ratio_ #size (150,)
+first_pc_explained_variance_ratio=pca.explained_variance_ratio_[0]
+second_pc_explained_variance_ratio=pca.explained_variance_ratio_[1]
+print "first_pc_explained_variance_ratio:",first_pc_explained_variance_ratio
+print "second_pc_explained_variance_ratio:",second_pc_explained_variance_ratio
+
+
