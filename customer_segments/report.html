@@ -11763,6 +11763,8 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Reviewer3:
 <a href="https://customers.microsoft.com/en-us/story/food-delivery-service-uses-machine-learning-to-revolut">https://customers.microsoft.com/en-us/story/food-delivery-service-uses-machine-learning-to-revolut</a></p>
+<p>Reviewer4: For more insights into performing cluster analysis with our wholesale customer dataset,</p>
+<p><a href="https://arxiv.org/abs/1211.0437">https://arxiv.org/abs/1211.0437</a></p>
 <p>Welcome to the third project of the Machine Learning Engineer Nanodegree! In this notebook, some template code has already been provided for you, and it will be your job to implement the additional functionality necessary to successfully complete this project. Sections that begin with <strong>'Implementation'</strong> in the header indicate that the following block of code will require additional functionality which you must provide. Instructions will be provided for each section and the specifics of the implementation are marked in the code block with a <code>'TODO'</code> statement. Please be sure to read the instructions carefully!</p>
 <p>In addition to implementing code, there will be questions that you must answer which relate to the project and your implementation. Each section where you will answer a question is preceded by a <strong>'Question X'</strong> header. Carefully read each question and provide thorough answers in the following text boxes that begin with <strong>'Answer:'</strong>. Your project submission will be evaluated based on your answers to each of the questions and the implementation you provide.</p>
 <blockquote><p><strong>Note:</strong> Code and Markdown cells can be executed using the <strong>Shift + Enter</strong> keyboard shortcut. In addition, Markdown cells can be edited by typically double-clicking the cell to enter edit mode.</p>
@@ -17249,7 +17251,11 @@ ROoAAAAASUVORK5CYII=
 </ul>
 </li>
 <li>Import a decision tree regressor, set a <code>random_state</code>, and fit the learner to the training data.</li>
-<li>Report the prediction score of the testing set using the regressor's <code>score</code> function.</li>
+<li><p>Report the prediction score of the testing set using the regressor's <code>score</code> function.</p>
+<p>Reviewer4 added:Detecting redundant features is a common step during feature selection.</p>
+<p>An Introduction to Feature Selection</p>
+<p><a href="http://machinelearningmastery.com/an-introduction-to-feature-selection/">http://machinelearningmastery.com/an-introduction-to-feature-selection/</a></p>
+</li>
 </ul>
 
 </div>
@@ -17381,22 +17387,63 @@ Direct way of seeing test score: 0.363387470627
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
-<h1 id="Original-answer">Original answer<a class="anchor-link" href="#Original-answer">&#182;</a></h1><p>Detergents_Paper was attempted to be predicted. Accuracy is 1 for trainset, 0 for testset. Coefficient of determination (r^2)is 1 for training set, 0.21 for test set, which can be interpreted as failed to fit to the test data. The Detergents_Paper seems not a good feature to identify customer's speding habit.</p>
-<h1 id="Reviewer2-caught-the-wrong-regressor,-and-now-I-fixed-and-re-ran.">Reviewer2 caught the wrong regressor, and now I fixed and re-ran.<a class="anchor-link" href="#Reviewer2-caught-the-wrong-regressor,-and-now-I-fixed-and-re-ran.">&#182;</a></h1><p>ntrain_Score_accuracy: 1.0<br>
+<p><strong>#Original answer </strong></p>
+<p>Detergents_Paper was attempted to be predicted. Accuracy is 1 for trainset, 0 for testset. Coefficient of determination (r^2)is 1 for training set, 0.21 for test set, which can be interpreted as failed to fit to the test data. The Detergents_Paper seems not a good feature to identify customer's speding habit.</p>
+<p><strong>#Reviewer2 caught the wrong regressor, and now I fixed and re-ran. </strong></p>
+<p>ntrain_Score_accuracy: 1.0<br>
 ntest_Score_accuracy: 0.0<br>
 ntrain_Score_r2: 1.0<br>
 ntest_Score_r2: 0.487937295158</p>
 <p>Detergents_Paper was attempted to be predicted. Accuracy is 1 for trainset, 0 for testset. However, coefficient of determination (r^2) is 1 for training set, 0.49 for test set, which can be interpreted as well correlated to the rest of the dataset. The Detergents_Paper seems not a good feature to identify customer's spending habit since the customer would purchase other products along with Detergents_Paper.</p>
-<h1 id="Reviewer3-pointed-metrics.accuracy_score-and-metrics.r2_score-that-the-true-labels-should-be-the-first-parameter-passed-to-the-method,-not-the-predictions...">Reviewer3 pointed metrics.accuracy_score and metrics.r2_score that the true labels should be the first parameter passed to the method, not the predictions...<a class="anchor-link" href="#Reviewer3-pointed-metrics.accuracy_score-and-metrics.r2_score-that-the-true-labels-should-be-the-first-parameter-passed-to-the-method,-not-the-predictions...">&#182;</a></h1><p><a href="http://scikit-learn.org/stable/modules/generated/sklearn.metrics.r2_score.html">http://scikit-learn.org/stable/modules/generated/sklearn.metrics.r2_score.html</a></p>
+<p><strong>#Reviewer3 pointed metrics.accuracy_score and metrics.r2_score that the true labels should be the first parameter passed to the method, not the predictions...</strong><br>
+<a href="http://scikit-learn.org/stable/modules/generated/sklearn.metrics.r2_score.html">http://scikit-learn.org/stable/modules/generated/sklearn.metrics.r2_score.html</a></p>
 <p>So I fixed the order of input parameters passed to the method, and I get slightly different number in test_Score_r2.</p>
 <p>train_Score_accuracy: 1.0
 test_Score_accuracy: 0.0
 train_Score_r2: 1.0
 test_Score_r2: 0.363387470627
 Direct way of seeing test score: 0.363387470627</p>
+<p><strong>#Reviewer 4 added chi square test to check the normality</strong></p>
+<p><a href="http://stackoverflow.com/questions/12838993/scipy-normaltest-how-is-it-used">http://stackoverflow.com/questions/12838993/scipy-normaltest-how-is-it-used</a></p>
+<p>*Normaltest returns a 2-tuple of the chi-squared statistic, and the associated p-value. Given the null hypothesis that x came from a normal distribution, the p-value represents the probability that a chi-squared statistic that large (or larger) would be seen.</p>
+<p>If the p-val is very small, it means it is unlikely that the data came from a normal distribution. *</p>
+<p><strong>#Reviewer 4 added Issues with the chi square test</strong></p>
+<p><a href="http://stats.stackexchange.com/questions/2492/is-normality-testing-essentially-useless">http://stats.stackexchange.com/questions/2492/is-normality-testing-essentially-useless</a></p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[341]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="n">feature</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Fresh&#39;</span><span class="p">]</span>
+<span class="n">norm_results</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">normaltest</span><span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># low p-value indicates data not likely to come from normal distribution</span>
+<span class="k">print</span> <span class="n">norm_results</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>NormaltestResult(statistic=274.34162662040899, pvalue=2.6759173855882678e-60)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -29342,9 +29389,15 @@ REQawwEfIiIiIiIiIiKN4YAPEREREREREZHGcMCHiIiIiIiIiEhjOOBDRERERERERKQx/x+nAweo
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Question to reviewer2:</p>
+<p><strong>Question to reviewer2:</strong></p>
 <p>Q: I would like to learn how to randomly sample including two different segments effectively, instead of pointing I choose 5, instead of 3 items.</p>
 <p>A: We can't really do this, as we don't have the cluster assignments at this point in the project. You could look into choosing data points(such as one with high Grocery, Milk and Deter spending and another with low amounts in these(since PCA1 is split based on this)). Could look into using np.argmax()</p>
+<p>**Reviewer4 addded:</p>
+<p>Outlier detection and removal can be very subjective, and while we definitely benefit by <strong>reducing the skewness of the data</strong> and <strong>avoiding effects on k-means clustering</strong>, there are also <strong>costs</strong>.We don't want to reduce our dataset size too much, given that it's already quite small. Also, outliers can contain valuable information that we may want to analyze. In this case, those outliers may be very important customers, and we should be careful not to neglect them.</p>
+<p>How to Identify Outliers in your Data</p>
+<p><a href="http://machinelearningmastery.com/how-to-identify-outliers-in-your-data/">http://machinelearningmastery.com/how-to-identify-outliers-in-your-data/</a></p>
+<p>Removing outliers from a k-mean cluster:</p>
+<p><a href="http://stackoverflow.com/questions/13989419/removing-outliers-from-a-k-mean-cluster">http://stackoverflow.com/questions/13989419/removing-outliers-from-a-k-mean-cluster</a></p>
 
 </div>
 </div>
@@ -30366,17 +30419,7 @@ These datapoints were added to the outliers list to be removed, because they are
 <p>Yes, these data points needs to be removed from the dataset.
 Also, the following index of data points on top of those 5 data points were added to the outliers list to be removed, because they are in the range beyond 1.5IQR, which can throw out the normality of distribution.</p>
 
-<pre><code>[38, 57, 65, 65, 66, 66, 75, 75, 81, 86, 95, 96, 98, 109, 128, 128, 137, 142, 145, 154, 154, 154, 161, 171, 175, 183, 184, 187, 193, 203, 218, 233, 264, 285, 289, 304, 305, 325, 338, 343, 353, 355, 356, 357, 412, 420, 429, 439]</code></pre>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Feature-Transformation">Feature Transformation<a class="anchor-link" href="#Feature-Transformation">&#182;</a></h2><p>In this section you will use principal component analysis (PCA) to draw conclusions about the underlying structure of the wholesale customer data. Since using PCA on a dataset calculates the dimensions which best maximize variance, we will find which compound combinations of features best describe customers.</p>
+<pre><code>[38, 57, ~~65, 65,66, 66,~~ 75, 75, 81, 86, 95, 96, 98, 109, 128, 128, 137, 142, 145, 154, 154, 154, 161, 171, 175, 183, 184, 187, 193, 203, 218, 233, 264, 285, 289, 304, 305, 325, 338, 343, 353, 355, 356, 357, 412, 420, 429, 439]</code></pre>
 
 </div>
 </div>
@@ -31179,7 +31222,8 @@ TksAAAAASUVORK5CYII=
 In Dimension 2, Frozen and Fresh/Delocatessen are correlated.<br>
 In Dimension 3, Fresh(-ve) and Delicatessen are correlated.<br>
 In Dimension 4, Frozen(-ve) and Delicatessen are correlated.</p>
-<h1 id="Reviewer2-suggests-to-add:">Reviewer2 suggests to add:<a class="anchor-link" href="#Reviewer2-suggests-to-add:">&#182;</a></h1><ul>
+<p><strong>#Reviewer2 suggests to add:</strong></p>
+<ul>
 <li>How each component relates to customer spending. Therefore for each component what are the prevalent features in each(nice job!).</li>
 <li>What does a high value in the component represent? What type of customer?</li>
 <li>PCA deals with the variance(spread) of the data and the correlation between features.</li>
@@ -31199,7 +31243,8 @@ In Dimension 4, Frozen(-ve) and Delicatessen are correlated.</p>
 <p>In Dimension 2, <em>Frozen/Fresh/Delocatessen</em> capture the highest variance and prevalent features and correlated. They can be considered as another segment that are not related to the first dimension/segment(Segment 0). This can be named as Segment 1 altogether.</p>
 <p>In Dimension 3, it captures only 0.1 variance, therefore, it may not be significantly meaningful but, Fresh has the greatest negative weight and Delicatessen has the greatest positive weight. One who buys Fresh more would buy Delicatessen less. <em>Delicatessen</em> may be considered as Segment 2.</p>
 <p>In Dimension 4, it captures only 0.1 variance, therefore, it may not be significantly meaningful but, Frozen have negative weight and Delicatessen has positive weight. One who buys Frozen more would buy Delicatessen less.</p>
-<h1 id="Reviewer3-pointed">Reviewer3 pointed<a class="anchor-link" href="#Reviewer3-pointed">&#182;</a></h1><p>Excellent work reporting the cumulative variance, but the discussion can be adjusted slightly to say that the dimensions represent <strong>patterns of spending</strong> in the categories, rather than actual customers (or segments of customers) — these patterns of spending can both follow AND go against the direction of the category weights.</p>
+<p><strong>#Reviewer3 pointed </strong></p>
+<p>Excellent work reporting the cumulative variance, but the discussion can be adjusted slightly to say that the dimensions represent <strong>patterns of spending</strong> in the categories, rather than actual customers (or segments of customers) — these patterns of spending can both follow AND go against the direction of the category weights.</p>
 <p>With PCA, we could actually reverse the signs of the category weights and still be capturing the variance in the data.:</p>
 <p><a href="http://stats.stackexchange.com/questions/88880/does-the-sign-of-scores-or-of-loadings-in-pca-or-fa-have-a-meaning-may-i-revers">http://stats.stackexchange.com/questions/88880/does-the-sign-of-scores-or-of-loadings-in-pca-or-fa-have-a-meaning-may-i-revers</a></p>
 <p><strong>REVISED Answer based on Reviewer3 comment :</strong></p>
@@ -31207,6 +31252,11 @@ In Dimension 4, Frozen(-ve) and Delicatessen are correlated.</p>
 <p>The 2nd principal component is made up of large positive weights in <em>Fresh, Frozen, Delicatessen</em>. It also correlates with a decrease in <em>Detergents_Paper</em>. This pattern might represent spending in Hotal/Restaurant/Cafe that are purchased together.</p>
 <p>The 3rd principal component is made up of Fresh with the greatest negative weight and Delicatessen with the greatest positive weight. One who buys Fresh more would buy Delicatessen less. This pattern suggests <em>Delicatessen</em> may be considered as Segment 2 aside from Fresh.</p>
 <p>The 4th principal component is made up of Frozen with negative weight and Delicatessen with positive weight. One who buys Frozen more would buy Delicatessen less. This pattern suggests <em>Delicatessen</em> may be considered as Segment 2 aside from Frozen.</p>
+<p><strong>Reviewer4 added:</strong></p>
+<p>Principal Component Analysis Explained Visually<br>
+<a href="http://setosa.io/ev/principal-component-analysis/">http://setosa.io/ev/principal-component-analysis/</a></p>
+<p>PCA tutorial<br>
+<a href="https://algobeans.com/2016/06/15/principal-component-analysis-tutorial/">https://algobeans.com/2016/06/15/principal-component-analysis-tutorial/</a></p>
 
 </div>
 </div>
@@ -38522,6 +38572,18 @@ Frozen and Fresh are most strongly correlated with the second component.</p>
 </li>
 </ul>
 <p>Given the observations about the wholesale customer data that many datapoints can be in between many clusters (or mixture of features), not as sharply divided by any certain boundaries, it would make the most sense if Gaussian Mixture model would work better.</p>
+<p><strong>#Reviewer4 added </strong></p>
+<p>density based clustering DBSCAN<br>
+<a href="http://scikit-learn.org/stable/modules/clustering.html#dbscan">http://scikit-learn.org/stable/modules/clustering.html#dbscan</a></p>
+<ul>
+<li><p>A big drawback with KMeans is that it assumes the groups are spherical (globular) shapes that are symmetrical, which don't always occur with real data. 
+<a href="http://stats.stackexchange.com/questions/133656/how-to-understand-the-drawbacks-of-k-means">http://stats.stackexchange.com/questions/133656/how-to-understand-the-drawbacks-of-k-means</a></p>
+</li>
+<li><p>GMM assumes the groups to be elliptical.
+<a href="http://stackoverflow.com/questions/26019584/understanding-concept-of-gaussian-mixture-models">http://stackoverflow.com/questions/26019584/understanding-concept-of-gaussian-mixture-models</a></p>
+</li>
+</ul>
+<p><img src="https://udacity-github-sync-content.s3.amazonaws.com/_imgs/15447/1470777852/KMeans-vs-GMM.jpg" alt=""></p>
 
 </div>
 </div>
@@ -38635,9 +38697,46 @@ n_components= 4 ,silhouette score: 0.299093443086
 n_components=3, silhouette score=0.361193625039<br>
 n_components=4, silhouette score=0.305230943058</p>
 <p>And when two clusters are chosen, the silhouette score is the highest.</p>
+<p><strong>Reviewer4 added:</strong></p>
+<p>Note: choosing number of clusters
+It can often be ambiguous determining whether silhouette score, or any other measure of clustering performance, gives a definitive answer to the "correct" number of clusters in a dataset.</p>
+<p>For example, Silhouette score is based on <a href="http://scikit-learn.org/stable/modules/generated/sklearn.metrics.pairwise.euclidean_distances.html">Euclidean distance</a>, which is the metric used to form clusters in K-Means — this could produce scores that are well-suited to K-Means but not necessarily to GMM.</p>
+<p>While using <a href="http://scikit-learn.org/stable/auto_examples/mixture/plot_gmm_selection.html">GMM</a> you can also look at the Bayesian Information Criterion (<a href="https://en.wikipedia.org/wiki/Bayesian_information_criterion">BIC</a>) or the Akaike information criterion (<a href="https://en.wikipedia.org/wiki/Akaike_information_criterion">AIC</a>) for finding the optimal number of clusters.</p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[342]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Look at BIC</span>
+<span class="k">print</span> <span class="s2">&quot;clusters BIC: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">clusterer</span><span class="o">.</span><span class="n">bic</span><span class="p">(</span><span class="n">reduced_data</span><span class="p">))</span>
+
+<span class="c1"># Look at AIC</span>
+<span class="k">print</span> <span class="s2">&quot;clusters AIC: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">clusterer</span><span class="o">.</span><span class="n">aic</span><span class="p">(</span><span class="n">reduced_data</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>clusters BIC: 3075.26833092
+clusters AIC: 3031.41735886
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -41472,6 +41571,68 @@ Great Data Skeptic podcast on "p-hacking" and other shady practices to watch out
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[347]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Reviewer4 added : For a supervised learning analysis of the cluster labels, </span>
+<span class="c1">#we can get pretty good results by using KNN.</span>
+
+
+<span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">reduced_data</span><span class="p">,</span> <span class="n">preds</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="n">clf</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">weights</span><span class="o">=</span><span class="s1">&#39;distance&#39;</span><span class="p">)</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Report the score for training and testing</span>
+<span class="k">print</span> <span class="s2">&quot;Training accuracy = {:.4f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">))</span>
+<span class="k">print</span> <span class="s2">&quot;Testing accuracy = {:.4f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Training accuracy = 1.0000
+Testing accuracy = 0.9900
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>NOTE</strong><br>
+<a href="http://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html">KNeighborsClassifier</a> and 
+<a href="http://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html">KMeans</a> are different.</p>
+<p>KNeighborsClassifier is for Classifier implementing the k-nearest neighbors vote:</p>
+
+<pre><code>sklearn.neighbors.KNeighborsClassifier(n_neighbors=5, weights='uniform', algorithm='auto', leaf_size=30, p=2, metric='minkowski', metric_params=None, n_jobs=1, **kwargs)
+
+</code></pre>
+<p>Kmeans is for K-Means clustering:</p>
+
+<pre><code>sklearn.cluster.KMeans(n_clusters=8, init='k-means++', n_init=10, max_iter=300, tol=0.0001, precompute_distances='auto', verbose=0, random_state=None, copy_x=True, n_jobs=1, algorithm='auto')[source]</code></pre>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -42786,6 +42947,44 @@ QhgEAAAAAABgI/8/qe0m+akDvi0AAAAASUVORK5CYII=
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[344]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Reviewer4 added comments:</span>
+
+<span class="c1">#With soft clustering we can also take a look at the predicted probabilities of the cluster </span>
+<span class="c1">#assignments... (thanks GMM!)</span>
+
+<span class="c1"># look at just the 3 sample points</span>
+<span class="n">samples_proba</span> <span class="o">=</span> <span class="n">clusterer</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">pca_samples</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">pred</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sample_preds</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s2">&quot;Sample point&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;predicted to be in Cluster {} ({:.2f}%)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">samples_proba</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">pred</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Sample point 0 predicted to be in Cluster 1 (96.27%)
+Sample point 1 predicted to be in Cluster 1 (92.64%)
+Sample point 2 predicted to be in Cluster 1 (96.10%)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
