@@ -105,8 +105,10 @@ class LearningAgent(Agent):
         ## TO DO ##
         ###########
         # When not learning, choose a random action
+        #action=self.next_waypoint(self)
         # When learning, choose a random action with 'epsilon' probability
         #   Otherwise, choose an action with the highest Q-value for the current state
+        
  
         return action
 
@@ -163,14 +165,18 @@ def run():
     # Follow the driving agent
     # Flags:
     #   enforce_deadline - set to True to enforce a deadline metric
+    enforce_deadline=True
     env.set_primary_agent(agent)
 
     ##############
     # Create the simulation
     # Flags:
     #   update_delay - continuous time (in seconds) between actions, default is 2.0 seconds
+    update_delay=0.01
     #   display      - set to False to disable the GUI if PyGame is enabled
+    display=False
     #   log_metrics  - set to True to log trial and simulation results to /logs
+    log_metrics=True
     #   optimized    - set to True to change the default log file name
     sim = Simulator(env)
     
@@ -179,6 +185,7 @@ def run():
     # Flags:
     #   tolerance  - epsilon tolerance before beginning testing, default is 0.05 
     #   n_test     - discrete number of testing trials to perform, default is 0
+    n_test=10
     sim.run()
 
 

@@ -33,6 +33,14 @@ class Simulator(object):
         'crimson' : (128,   0,   0),
         'gray'    : (155, 155, 155)
     }
+    
+    
+        # Flags:
+    update_delay=0.01 #continuous time (in seconds) between actions, default is 2.0 seconds
+    display=False #False to disable the GUI if PyGame is enabled
+    log_metrics=True #set to True to log trial and simulation results to /logs
+    #   optimized    - set to True to change the default log file name
+ 
 
     def __init__(self, env, size=None, update_delay=2.0, display=True, log_metrics=False, optimized=False):
         self.env = env
