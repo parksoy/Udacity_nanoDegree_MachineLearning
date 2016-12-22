@@ -36,13 +36,13 @@ class Simulator(object):
     
     
         # Flags:
-    update_delay=0.01 #continuous time (in seconds) between actions, default is 2.0 seconds
-    display=False #False to disable the GUI if PyGame is enabled
-    log_metrics=True #set to True to log trial and simulation results to /logs
-    #   optimized    - set to True to change the default log file name
+    #update_delay=0.01 #continuous time (in seconds) between actions, default is 2.0 seconds
+    #display=False #False to disable the GUI if PyGame is enabled
+    #log_metrics=True #set to True to log trial and simulation results to /logs
+    #optimized    - set to True to change the default log file name
  
 
-    def __init__(self, env, size=None, update_delay=2.0, display=True, log_metrics=False, optimized=False):
+    def __init__(self, env, size=None, update_delay=0.01, display=False, log_metrics=True, optimized=False): #POR:update_delay=2.0, display=True, log_metrics=False, optimized=False
         self.env = env
         self.size = size if size is not None else ((self.env.grid_size[0] + 1) * self.env.block_size, (self.env.grid_size[1] + 2) * self.env.block_size)
         self.width, self.height = self.size
@@ -116,7 +116,7 @@ class Simulator(object):
             self.log_writer = csv.DictWriter(self.log_file, fieldnames=self.log_fields)
             self.log_writer.writeheader()
 
-    def run(self, tolerance=0.05, n_test=0):
+    def run(self, tolerance=0.05, n_test=10): #n_test     - discrete number of testing trials to perform, default is 0
         """ Run a simulation of the environment. 
 
         'tolerance' is the minimum epsilon necessary to begin testing (if enabled)
@@ -292,6 +292,8 @@ class Simulator(object):
                     print "Agent attempted driving {} through a red light with traffic and cause a major accident. (rewarded {:.2f})".format(status['action'], status['reward'])
            
             # Time Remaining
+            self.env.enforce_deadline=True
+            
             if self.env.enforce_deadline:
                 time = (status['deadline'] - 1) * 100.0 / (status['t'] + status['deadline'])
                 print "{:.0f}% of time remaining to reach destination.".format(time)
