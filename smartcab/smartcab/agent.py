@@ -108,6 +108,7 @@ class LearningAgent(Agent):
         self.next_waypoint = random.choice(Environment.valid_actions[1:])
         print "YAYAYAYAY self.next_waypoint:", self.next_waypoint
 
+
         #action=self.next_waypoint #valid_actions = [None, 'forward', 'left', 'right']
         # When learning, choose a random action with 'epsilon' probability
         #   Otherwise, choose an action with the highest Q-value for the current state

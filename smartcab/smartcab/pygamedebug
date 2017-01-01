@@ -1,0 +1,191 @@
+-rw-r--r--    1 parksoy  staff   37216 Dec 31 11:19 pygame-1.9.1-py27_1.json
+-rw-r--r--    1 parksoy  staff   11377 Dec 31 11:19 history
+drwxr-xr-x   25 parksoy  staff     850 Dec 31 11:19 ..
+drwxr-xr-x  204 parksoy  staff    6936 Dec 31 11:19 .
+Soyoungs-MacBook-Air:conda-meta parksoy$ python
+Python 2.7.12 |Anaconda 4.2.0 (x86_64)| (default, Jul  2 2016, 17:43:17)
+[GCC 4.2.1 (Based on Apple Inc. build 5658) (LLVM build 2336.11.00)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+Anaconda is brought to you by Continuum Analytics.
+Please check out: http://continuum.io/thanks and https://anaconda.org
+>>> import pygame
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/Users/parksoy/anaconda/lib/python2.7/site-packages/pygame/__init__.py", line 127, in <module>
+    from pygame.base import *
+ImportError: dlopen(/Users/parksoy/anaconda/lib/python2.7/site-packages/pygame/base.so, 2): Library not loaded: /usr/local/lib/libSDL-1.2.0.dylib
+  Referenced from: /Users/parksoy/anaconda/lib/python2.7/site-packages/pygame/base.so
+  Reason: image not found
+
+
+  >>> import platform
+  >>> platform.architecture()
+  ('64bit', '')
+
+
+  Soyoungs-MacBook-Air:conda-meta parksoy$ file /usr/bin/python
+/usr/bin/python: Mach-O universal binary with 2 architectures: [x86_64: Mach-O 64-bit executable x86_64] [i386: Mach-O executable i386]
+/usr/bin/python (for architecture x86_64):	Mach-O 64-bit executable x86_64
+/usr/bin/python (for architecture i386):	Mach-O executable i386
+
+
+to run 32 blit
+arch -i386 /usr/bin/python
+
+
+
+
+
+Soyoungs-MacBook-Air:conda-meta parksoy$ anaconda --version
+anaconda Command line client (version 1.5.1)
+Soyoungs-MacBook-Air:conda-meta parksoy$ which anaconda
+/Users/parksoy/anaconda/bin/anaconda
+Soyoungs-MacBook-Air:conda-meta parksoy$ conda --version
+conda 4.2.13
+
+
+The Python 2.7.3 .dmg Mac OS installer installs both 64-bit and 32-bit binaries in:
+
+/Library/Frameworks/Python.framework/Versions/2.7/bin/
+
+
+
+There is a 32-bit binary called python2.7-32 in that folder.
+
+To use it in the Terminal simply type $ python2.7-32 instead of python
+
+To use it in IDLE simply rename the 64-bit python2.7 binary to something like python2.7-64 then rename python2.7-32' topython2.7` and next time you launch IDLE or the Terminal it will use the 32-bit binary. Change it back when you are done.
+
+You can also force launch IDLE in 32-bit mode from the Terminal:
+
+$ arch -i386 /Library/Frameworks/Python.framework/Versions/2.7/bin/idle2.7 -n
+
+You can create a shell script Automator application to make it easier to launch.
+
+
+
+
+
+
+Soyoungs-MacBook-Air:conda-meta parksoy$ binstar search -t conda pygame
+Using Anaconda API: https://api.anaconda.org
+Run 'anaconda show <USER/PACKAGE>' to get more details:
+Packages:
+     Name                      |  Version | Package Types   | Platforms
+     ------------------------- |   ------ | --------------- | ---------------
+     CogSci/pygame             |  1.9.2a0 | conda           | linux-64, win-32, win-64, osx-64
+                                          : Python library based on SDL for making games
+     auto/pygamess             |    0.3.0 | conda           | linux-64
+                                          : https://github.com/kzfm/pygamess
+     clinicalgraphics/pygame   |  1.9.2a0 | conda           | win-64
+     kne/pygame                |  1.9.2a0 | conda           | linux-64, osx-64
+                                          : pygame - SDL library interface for writing multimedia applications/games
+     kne/pygame_sdl2           | 6.99.8.955plus8 | conda           | linux-64, win-32, win-64, osx-64
+                                          : Reimplementation of portions of the pygame API using SDL2.
+     krisvanneste/pygame       |  1.9.2a0 | conda           | win-64
+     prkrekel/pygame           |  1.9.2a0 | conda           | win-64
+     quasiben/pygame           |    1.9.1 | conda           | osx-64
+                                          : https://bitbucket.org/pygame
+     tlatorre/pygame           |    1.9.2 | conda           | linux-64
+                                          : http://www.pygame.org/news.html
+     ufechner/pygame-patched   |    1.9.1 | conda           | linux-64
+Found 10 packages
+
+
+
+
+
+conda install -c https://conda.binstar.org/prkrekel pygame
+
+conda install -c https://conda.binstar.org/CogSci pygame
+
+
+
+
+
+
+
+
+
+Soyoungs-MacBook-Air:site-packages parksoy$ pip install pygame
+Collecting pygame
+  Using cached pygame-1.9.2-cp27-cp27m-macosx_10_9_intel.whl
+Installing collected packages: pygame
+Exception:
+Traceback (most recent call last):
+  File "/Users/parksoy/anaconda/lib/python2.7/site-packages/pip/basecommand.py", line 215, in main
+    status = self.run(options, args)
+  File "/Users/parksoy/anaconda/lib/python2.7/site-packages/pip/commands/install.py", line 342, in run
+    prefix=options.prefix_path,
+  File "/Users/parksoy/anaconda/lib/python2.7/site-packages/pip/req/req_set.py", line 784, in install
+    **kwargs
+  File "/Users/parksoy/anaconda/lib/python2.7/site-packages/pip/req/req_install.py", line 851, in install
+    self.move_wheel_files(self.source_dir, root=root, prefix=prefix)
+  File "/Users/parksoy/anaconda/lib/python2.7/site-packages/pip/req/req_install.py", line 1064, in move_wheel_files
+    isolated=self.isolated,
+  File "/Users/parksoy/anaconda/lib/python2.7/site-packages/pip/wheel.py", line 345, in move_wheel_files
+    clobber(source, lib_dir, True)
+  File "/Users/parksoy/anaconda/lib/python2.7/site-packages/pip/wheel.py", line 316, in clobber
+    ensure_dir(destdir)
+  File "/Users/parksoy/anaconda/lib/python2.7/site-packages/pip/utils/__init__.py", line 83, in ensure_dir
+    os.makedirs(path)
+  File "/Users/parksoy/anaconda/lib/python2.7/os.py", line 157, in makedirs
+    mkdir(name, mode)
+OSError: [Errno 13] Permission denied: '/Users/parksoy/Library/Python/2.7/site-packages/pygame'
+Soyoungs-MacBook-Air:site-pac
+
+
+
+https://discussions.udacity.com/t/can-not-install-pygame-on-anaconda-mac/38913/5
+
+brew install sdl sdl_ttf sdl_image sdl_mixer portmidi
+
+
+
+
+
+
+
+
+
+Soyoungs-MacBook-Air:site-packages parksoy$ pip install pygame
+Collecting pygame
+  Using cached pygame-1.9.2-cp27-cp27m-macosx_10_9_intel.whl
+Installing collected packages: pygame
+Exception:
+Traceback (most recent call last):
+  File "/Users/parksoy/anaconda/lib/python2.7/site-packages/pip/basecommand.py", line 215, in main
+    status = self.run(options, args)
+  File "/Users/parksoy/anaconda/lib/python2.7/site-packages/pip/commands/install.py", line 342, in run
+    prefix=options.prefix_path,
+  File "/Users/parksoy/anaconda/lib/python2.7/site-packages/pip/req/req_set.py", line 784, in install
+    **kwargs
+  File "/Users/parksoy/anaconda/lib/python2.7/site-packages/pip/req/req_install.py", line 851, in install
+    self.move_wheel_files(self.source_dir, root=root, prefix=prefix)
+  File "/Users/parksoy/anaconda/lib/python2.7/site-packages/pip/req/req_install.py", line 1064, in move_wheel_files
+    isolated=self.isolated,
+  File "/Users/parksoy/anaconda/lib/python2.7/site-packages/pip/wheel.py", line 345, in move_wheel_files
+    clobber(source, lib_dir, True)
+  File "/Users/parksoy/anaconda/lib/python2.7/site-packages/pip/wheel.py", line 316, in clobber
+    ensure_dir(destdir)
+  File "/Users/parksoy/anaconda/lib/python2.7/site-packages/pip/utils/__init__.py", line 83, in ensure_dir
+    os.makedirs(path)
+  File "/Users/parksoy/anaconda/lib/python2.7/os.py", line 157, in makedirs
+    mkdir(name, mode)
+OSError: [Errno 13] Permission denied: '/Users/parksoy/Library/Python/2.7/site-packages/pygame'
+Soyoungs-MacBook-Air:site-packages parksoy$ sudo su
+Password:
+sh-3.2# pip install pygame
+Collecting pygame
+  Downloading pygame-1.9.2-cp27-cp27m-macosx_10_9_intel.whl (4.8MB)
+    100% |████████████████████████████████| 4.8MB 106kB/s
+Installing collected packages: pygame
+Successfully installed pygame-1.9.2
+sh-3.2# python
+Python 2.7.12 |Anaconda 4.2.0 (x86_64)| (default, Jul  2 2016, 17:43:17)
+[GCC 4.2.1 (Based on Apple Inc. build 5658) (LLVM build 2336.11.00)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+Anaconda is brought to you by Continuum Analytics.
+Please check out: http://continuum.io/thanks and https://anaconda.org
+>>> import pygame
+>>>

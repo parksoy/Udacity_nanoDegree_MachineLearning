@@ -65,6 +65,7 @@ class Simulator(object):
             try:
                 self.pygame = importlib.import_module('pygame')
                 self.pygame.init()
+
                 self.screen = self.pygame.display.set_mode(self.size)
                 self._logo = self.pygame.transform.smoothscale(self.pygame.image.load(os.path.join("images", "logo.png")), (self.road_width, self.road_width))
 
@@ -311,6 +312,7 @@ class Simulator(object):
 
 
     def render(self, trial, testing=False):
+        print "999999999999999999999999999999999999999999999999999"
         """ This is the GUI render display of the simulation.
             Supplementary trial data can be found from render_text. """
 
