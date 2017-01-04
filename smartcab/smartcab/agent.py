@@ -7,6 +7,7 @@ from planner import RoutePlanner
 from simulator import Simulator
 from collections import defaultdict
 from itertools import izip
+import operator
 
 
 class LearningAgent(Agent):
@@ -84,11 +85,13 @@ class LearningAgent(Agent):
         ## TO DO ##
         ###########
         # Calculate the maximum Q-value of all actions for a given state
-        maxQ=1
+        maxQidx=max(self.Q[self.state].iteritems(), key=operator.itemgetter(1))[0]
+        maxQval=self.Q[self.state][maxQidx]
         #maxQ = max(self.Q[(state,a)] for a in self.env.valid_actions)
-        print "maxQ------:", maxQ
+        print "maxQidx------:", maxQidx
+        print "maxQval------:", maxQval
 
-        return maxQ
+        return maxQval
 
 
     def createQ(self, state):
@@ -112,26 +115,11 @@ class LearningAgent(Agent):
                 self.Q[state]['right']=0.0
                 self.Q[state]['left']=0.0
                 self.Q[state]['None']=0.0
-                print "self.Q:---------", self.Q
+                print "initiallized self.Q:---------", self.Q
 
         return
 
-'''
-self.Q:---------
-{
-('left', 'red', 'forward'): {'forward': 0.0, 'None': 0.0, 'right': 0.0, 'left': 0.0},
-('left', 'red', 'right'): {'forward': 0.0, 'None': 0.0, 'right': 0.0, 'left': 0.0},
-('forward', 'red', None): {'forward': 0.0, 'None': 0.0, 'right': 0.0, 'left': 0.0},
-('left', 'green', 'forward'): {'forward': 0.0, 'None': 0.0, 'right': 0.0, 'left': 0.0},
-('forward', 'green', 'right'): {'forward': 0.0, 'None': 0.0, 'right': 0.0, 'left': 0.0},
-('left', 'green', None): {'forward': 0.0, 'None': 0.0, 'right': 0.0, 'left': 0.0},
-('right', 'green', None): {'forward': 0.0, 'None': 0.0, 'right': 0.0, 'left': 0.0},
-('forward', 'green', None): {'forward': 0.0, 'None': 0.0, 'right': 0.0, 'left': 0.0},
-('left', 'red', None): {'forward': 0.0, 'None': 0.0, 'right': 0.0, 'left': 0.0},
-('forward', 'green', 'left'): {'forward': 0.0, 'None': 0.0, 'right': 0.0, 'left': 0.0},
-('right', 'red', None): {'forward': 0.0, 'None': 0.0, 'right': 0.0, 'left': 0.0}
-}
-'''
+
 
     def choose_action(self, state):
         """ The choose_action function is called when the agent is asked to choose
@@ -141,7 +129,7 @@ self.Q:---------
         self.state = state
         self.next_waypoint = self.planner.next_waypoint()
 
-        action=None
+
         ###########
         ## TO DO ##
         ###########
@@ -151,7 +139,7 @@ self.Q:---------
         # When learning, choose a random action with 'epsilon' probability
         #   Otherwise, choose an action with the highest Q-value for the current state
         #else:
-        #    action=argmax(self.Q[self.state].iteritems(), key=operator.itemgetter(1))[0]
+        action=max(self.Q[self.state].iteritems(), key=operator.itemgetter(1))[0]
 
         return action
 
@@ -166,10 +154,25 @@ self.Q:---------
         ###########
         # When learning, implement the value iteration update rule
         #   Use only the learning rate 'alpha' (do not use the discount factor 'gamma')
-        #get_maxQ(self, state)
-        #self.Q[self.state][action]+=self.alpha(reward-self.gamma*maxQ-self.Q[self.state][action])
- #self.q_table[(self.prev_state, self.prev_action)] = (1 - self.alpha)*self.q_table[(self.prev_state, self.prev_action)] + self.alpha*(self.prev_reward + self.gamma*max_next_state_q_value)
 
+
+        prev_state=self.env.step_data['state']
+        prev_action=self.env.step_data['action']
+        prev_reward=self.env.step_data['reward']
+        '''
+        print "self.env.step_data---------",self.env.step_data['state'] #('right', 'red', None)
+        print "self.env.step_data---------",self.env.step_data['action'] #forward
+        print "self.env.step_data---------",self.env.step_data['reward'] #-9.71676469581
+        print "self.state====",self.state
+        print "self.state====",self.action
+        print "self.state====",self.reward
+        '''
+        #print "prev_state--------------",prev_state
+        print "before update self.Q[prev_state][prev_action]----------------",self.Q[prev_state][prev_action]
+
+        self.Q[prev_state][prev_action] = \
+            (1 - self.alpha)*self.Q[prev_state][prev_action] + self.alpha*(prev_reward + self.get_maxQ(state))
+        print "Updated Q---------------", self.Q[prev_state][prev_action]
         return
 
 
