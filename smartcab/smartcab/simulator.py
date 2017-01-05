@@ -312,7 +312,7 @@ class Simulator(object):
 
 
     def render(self, trial, testing=False):
-        print "999999999999999999999999999999999999999999999999999"
+        
         """ This is the GUI render display of the simulation.
             Supplementary trial data can be found from render_text. """
 

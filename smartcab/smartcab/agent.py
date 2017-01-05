@@ -8,6 +8,7 @@ from simulator import Simulator
 from collections import defaultdict
 from itertools import izip
 import operator
+import pprint
 
 
 class LearningAgent(Agent):
@@ -21,7 +22,7 @@ class LearningAgent(Agent):
 
         # Set parameters of the learning agent
         self.learning = learning # Whether the agent is expected to learn
-        self.Q =dict() #POR dict()          # Create a Q-table which will be a dictionary of tuples: defaultdict(float)??
+        self.Q =dict() #Create a Q-table which will be a dictionary of tuples: defaultdict(float)??
         self.epsilon = epsilon   # Random exploration factor
         self.alpha = alpha       # Learning factor
         self.gamma=1 #discount
@@ -72,7 +73,7 @@ class LearningAgent(Agent):
         # Set 'state' as a tuple of relevant data for the agent
         #state::: ('right', {'light': 'green', 'oncoming': None, 'right': None, 'left': None}, 20)
 
-        state = (waypoint, inputs['light'],inputs['oncoming'])
+        state = (waypoint, inputs['light'],inputs['oncoming'],inputs['right'],inputs['left'])
 
         return state
 
@@ -85,10 +86,11 @@ class LearningAgent(Agent):
         ## TO DO ##
         ###########
         # Calculate the maximum Q-value of all actions for a given state
+
         maxQidx=max(self.Q[self.state].iteritems(), key=operator.itemgetter(1))[0]
         maxQval=self.Q[self.state][maxQidx]
-        #maxQ = max(self.Q[(state,a)] for a in self.env.valid_actions)
-        print "maxQidx------:", maxQidx
+
+        print "\nmaxQidx------:", maxQidx
         print "maxQval------:", maxQval
 
         return maxQval
@@ -109,13 +111,14 @@ class LearningAgent(Agent):
                 pass
             else:
                 state=self.build_state()
-                print "state------",state
+                print "Current state------",state
                 self.Q[state]={}
                 self.Q[state]['forward']=0.0
                 self.Q[state]['right']=0.0
                 self.Q[state]['left']=0.0
                 self.Q[state]['None']=0.0
-                print "initiallized self.Q:---------", self.Q
+        print "initiallized self.Q:---------"
+        pprint.pprint(self.Q)
 
         return
 
@@ -129,17 +132,27 @@ class LearningAgent(Agent):
         self.state = state
         self.next_waypoint = self.planner.next_waypoint()
 
+        #currrent_action=self.env.step_data['action']
+        #currrent_reward=self.env.step_data['reward']
+
+        #self.learn(self, state, currrent_action, currrent_reward)
+        print "When choosing action, it is based on this Q-----------\n"
+        pprint.pprint(self.Q[self.state])
 
         ###########
         ## TO DO ##
         ###########
         # When not learning, choose a random action
-        #if self.learning==False:
-        #    action= random.choice(self.env.valid_actions)
+        if self.learning==False:
+            action= random.choice(self.env.valid_actions)
         # When learning, choose a random action with 'epsilon' probability
         #   Otherwise, choose an action with the highest Q-value for the current state
-        #else:
-        action=max(self.Q[self.state].iteritems(), key=operator.itemgetter(1))[0]
+        else:
+            action=max(self.Q[state].iteritems(), key=operator.itemgetter(1))[0]
+
+
+        print "and this action was chosen-",action
+
 
         return action
 
@@ -156,23 +169,29 @@ class LearningAgent(Agent):
         #   Use only the learning rate 'alpha' (do not use the discount factor 'gamma')
 
 
-        prev_state=self.env.step_data['state']
-        prev_action=self.env.step_data['action']
-        prev_reward=self.env.step_data['reward']
-        '''
-        print "self.env.step_data---------",self.env.step_data['state'] #('right', 'red', None)
-        print "self.env.step_data---------",self.env.step_data['action'] #forward
-        print "self.env.step_data---------",self.env.step_data['reward'] #-9.71676469581
-        print "self.state====",self.state
-        print "self.state====",self.action
-        print "self.state====",self.reward
-        '''
-        #print "prev_state--------------",prev_state
-        print "before update self.Q[prev_state][prev_action]----------------",self.Q[prev_state][prev_action]
+        current_state=self.env.step_data['state']
+        current_action=self.env.step_data['action']
+        current_reward=self.env.step_data['reward']
 
+        print "current_state--------------",current_state
+        print "arg state-----",state
+        print "current_action--------------",current_action
+        print "arg action----",action
+        print "current_reward---------------",current_reward
+        print "arg reward----",reward
+        #print "before update self.Q[current_s_state][current_action]----------------",self.Q[current_state][current_action]
+        #print "before update Q, self.get_maxQ(current_state)---------", self.get_maxQ(current_state)
+
+        '''
+        6:40am
         self.Q[prev_state][prev_action] = \
-            (1 - self.alpha)*self.Q[prev_state][prev_action] + self.alpha*(prev_reward + self.get_maxQ(state))
-        print "Updated Q---------------", self.Q[prev_state][prev_action]
+                (1 - self.alpha)*self.Q[prev_state][prev_action] + self.alpha*(prev_reward + self.get_maxQ(prev_state))
+        '''
+        self.Q[state][action] = \
+            (1 - self.alpha)*self.Q[state][action] + self.alpha*(reward + self.get_maxQ(state))
+        print "Updated Q---------------"
+        pprint.pprint(self.Q)
+
         return
 
 
@@ -181,11 +200,15 @@ class LearningAgent(Agent):
             environment for a given trial. This function will build the agent
             state, choose an action, receive a reward, and learn if enabled. """
 
+        ''''''
+        #POR flow
         state = self.build_state()          # Get current state
         self.createQ(state)                 # Create 'state' in Q-table
         action = self.choose_action(state)  # Choose an action
         reward = self.env.act(self, action) # Receive a reward
         self.learn(state, action, reward)   # Q-learn
+
+
 
         return
 

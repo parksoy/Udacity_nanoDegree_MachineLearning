@@ -3,6 +3,7 @@ import random
 import math
 from collections import OrderedDict
 from simulator import Simulator
+import pprint
 
 
 class TrafficLight(object):
@@ -102,7 +103,7 @@ class Environment(object):
         self.primary_agent = agent
         agent.primary_agent = True
         self.enforce_deadline = enforce_deadline
-        print "hellooooo", self.enforce_deadline
+
         print "888888888888888888888888888888888"
 
     def reset(self, testing=False):
@@ -268,6 +269,7 @@ class Environment(object):
         assert agent in self.agent_states, "Unknown agent!"
         assert action in self.valid_actions, "Invalid action!"
 
+
         state = self.agent_states[agent]
         location = state['location']
         heading = state['heading']
@@ -392,7 +394,8 @@ class Environment(object):
             self.trial_data['actions'][violation] += 1
 
             if(self.verbose == True): # Debugging
-                print "Environment.act(): Step data: {}".format(self.step_data)
+                print "Environment.act(): Step data: "#"{}".format(self.step_data)
+                pprint.pprint(self.step_data)
         return reward
 
     def compute_dist(self, a, b):
