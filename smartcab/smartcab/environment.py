@@ -104,7 +104,6 @@ class Environment(object):
         agent.primary_agent = True
         self.enforce_deadline = enforce_deadline
 
-        print "888888888888888888888888888888888"
 
     def reset(self, testing=False):
         """ This function is called at the beginning of a new trial. """
@@ -449,6 +448,7 @@ class DummyAgent(Agent):
 
         inputs = self.env.sense(self)
 
+
         # Check if the chosen waypoint is safe to move to.
         action_okay = True
         if self.next_waypoint == 'right':
@@ -460,6 +460,7 @@ class DummyAgent(Agent):
         elif self.next_waypoint == 'left':
             if inputs['light'] == 'red' or (inputs['oncoming'] == 'forward' or inputs['oncoming'] == 'right'):
                 action_okay = False
+
 
         # Move to the next waypoint and choose a new one.
         action = None
