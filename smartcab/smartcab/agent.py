@@ -46,8 +46,7 @@ class LearningAgent(Agent):
         ## TO DO ##
         ###########
         # Update epsilon using a decay function of your choice
-        #self.epsilon=self.epsilon-0.05
-
+        
         #print "self.trial_data========", self.env.trial_data
         #print "self.step_data==============",self.env.step_data
 
