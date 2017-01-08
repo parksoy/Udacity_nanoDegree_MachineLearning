@@ -48,8 +48,8 @@ class LearningAgent(Agent):
         # Update epsilon using a decay function of your choice
         #self.epsilon=self.epsilon-0.05
 
-        print "self.trial_data========", self.env.trial_data
-        print "self.step_data==============",self.env.step_data
+        #print "self.trial_data========", self.env.trial_data
+        #print "self.step_data==============",self.env.step_data
 
         print "self.alpha======",self.alpha
         print "before self.epsilon update============",self.epsilon
@@ -176,7 +176,7 @@ class LearningAgent(Agent):
         self.Q[state][action] = \
             (1 - self.alpha)*self.Q[state][action] + self.alpha*(reward + self.get_maxQ(state))
         #print "Updated Q---------------"
-        #pprint.pprint(self.Q)
+        pprint.pprint(self.Q)
 
         return
 
