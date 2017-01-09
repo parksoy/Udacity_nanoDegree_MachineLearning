@@ -42,18 +42,27 @@ class LearningAgent(Agent):
         # Select the destination as the new location to route to
         self.planner.route_to(destination)
 
+
         ###########
         ## TO DO ##
         ###########
         # Update epsilon using a decay function of your choice
-        
-        #print "self.trial_data========", self.env.trial_data
+
+        print "self.env.trial_data['t']========", self.env.trial_data
         #print "self.step_data==============",self.env.step_data
 
-        print "self.alpha======",self.alpha
-        print "before self.epsilon update============",self.epsilon
+        #print "self.alpha======",self.alpha
+        #print "before self.epsilon update============",self.epsilon
+
+        #linear
         self.epsilon=self.epsilon-0.05
-        print "after self.epsilon update============",self.epsilon
+
+        #exponential
+        #at=self.alpha*t
+        #self.epsilon=np.exp(-1*at)
+
+
+        #print "after self.epsilon update============",self.epsilon
 
 
         # Update additional class parameters as needed
@@ -216,8 +225,19 @@ def run():
     #   learning   - set to True to force the driving agent to use Q-learning
     #    * epsilon - continuous value for the exploration factor, default is 1
     #    * alpha   - continuous value for the learning rate, default is 0.5
+    #initial Q-learning without optimization alpha, epsilon
     agent = env.create_agent(LearningAgent,learning=True,epsilon=1,alpha=0.5)
 
+    #optimized Q-learning with a AND e variation
+    #alpha_init=[0.9,0.7,0.5,0.3] # learning rate,alpha,default 0.5
+    #epsilon_init=[0.5,0.7,0.9,1] #exploration factor,default 1
+
+    '''
+    for a in alpha_init:
+        for e in epsilon_init:
+            agent = env.create_agent(LearningAgent,learning=True,epsilon=e,alpha=a)
+
+    '''
     ##############
     # Follow the driving agent
     # Flags:
@@ -231,7 +251,7 @@ def run():
     #   display      - set to False to disable the GUI if PyGame is enabled
     #   log_metrics  - set to True to log trial and simulation results to /logs
     #   optimized    - set to True to change the default log file name
-    sim = Simulator(env, update_delay=0.01, display=True,log_metrics=True,optimized=True)
+    sim = Simulator(env, update_delay=0.0001, display=True,log_metrics=True,optimized=True)
 
     ##############
     # Run the simulator
