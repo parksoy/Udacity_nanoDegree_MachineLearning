@@ -9,6 +9,7 @@ from collections import defaultdict
 from itertools import izip
 import operator
 import pprint
+import numpy as np
 
 
 class LearningAgent(Agent):
@@ -32,6 +33,7 @@ class LearningAgent(Agent):
         ## TO DO ##
         ###########
         # Set any additional class parameters as needed
+        self.no_trials=0
 
 
     def reset(self, destination=None, testing=False): #POR False
@@ -47,9 +49,8 @@ class LearningAgent(Agent):
         ## TO DO ##
         ###########
         # Update epsilon using a decay function of your choice
-
-        print "self.env.trial_data['t']========", self.env.trial_data
-        #print "self.step_data==============",self.env.step_data
+        self.no_trials=self.no_trials+1
+        #print "total_trials =====",self.no_trials
 
         #print "self.alpha======",self.alpha
         #print "before self.epsilon update============",self.epsilon
@@ -58,7 +59,7 @@ class LearningAgent(Agent):
         self.epsilon=self.epsilon-0.05
 
         #exponential
-        #at=self.alpha*t
+        #at=self.alpha*self.no_trials
         #self.epsilon=np.exp(-1*at)
 
 
@@ -184,7 +185,7 @@ class LearningAgent(Agent):
         self.Q[state][action] = \
             (1 - self.alpha)*self.Q[state][action] + self.alpha*(reward + self.get_maxQ(state))
         #print "Updated Q---------------"
-        pprint.pprint(self.Q)
+        #pprint.pprint(self.Q)
 
         return
 
@@ -217,7 +218,7 @@ def run():
     #   verbose     - set to True to display additional output from the simulation
     #   num_dummies - discrete number of dummy agents in the environment, default is 100
     #   grid_size   - discrete number of intersections (columns, rows), default is (8, 6)
-    env = Environment(verbose=False,num_dummies=10)
+    env = Environment(verbose=False,num_dummies=100)
 
     ##############
     # Create the driving agent
@@ -226,11 +227,10 @@ def run():
     #    * epsilon - continuous value for the exploration factor, default is 1
     #    * alpha   - continuous value for the learning rate, default is 0.5
     #initial Q-learning without optimization alpha, epsilon
-    agent = env.create_agent(LearningAgent,learning=True,epsilon=1,alpha=0.5)
+    agent = env.create_agent(LearningAgent,learning=True,epsilon=1,alpha=0.9)
 
     #optimized Q-learning with a AND e variation
     #alpha_init=[0.9,0.7,0.5,0.3] # learning rate,alpha,default 0.5
-    #epsilon_init=[0.5,0.7,0.9,1] #exploration factor,default 1
 
     '''
     for a in alpha_init:
@@ -258,7 +258,7 @@ def run():
     # Flags:
     #   tolerance  - epsilon tolerance before beginning testing, default is 0.05
     #   n_test     - discrete number of testing trials to perform, default is 0
-    sim.run(n_test=10,tolerance=0.05)
+    sim.run(n_test=10,tolerance=0.01)
 
 
 if __name__ == '__main__':

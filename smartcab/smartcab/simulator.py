@@ -1,3 +1,5 @@
+#https://discussions.udacity.com/t/p4-smartcab-how-to-evaluate-performance-of-smartcab/187136/6
+
 ###########################################
 # Suppress matplotlib user warnings
 # Necessary for newer version of matplotlib
@@ -102,8 +104,8 @@ class Simulator(object):
             # Set log files
             if a.learning:
                 if self.optimized: # Whether the user is optimizing the parameters and decay functions
-                    self.log_filename = os.path.join("logs", "sim_improved-learning.csv")
-                    self.table_filename = os.path.join("logs","sim_improved-learning.txt")
+                    self.log_filename = os.path.join("logs", "sim_improved-learning_linear_a_0p9.csv")
+                    self.table_filename = os.path.join("logs","sim_improved-learning_linear_a_0p9.txt")
                 else:
                     self.log_filename = os.path.join("logs", "sim_default-learning.csv")
                     self.table_filename = os.path.join("logs","sim_default-learning.txt")
@@ -143,6 +145,7 @@ class Simulator(object):
                         if a.epsilon < tolerance: # assumes epsilon decays to 0
                             testing = True
                             trial = 1
+
                     else:
                         testing = True
                         trial = 1
