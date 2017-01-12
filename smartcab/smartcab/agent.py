@@ -56,7 +56,7 @@ class LearningAgent(Agent):
         #print "before self.epsilon update============",self.epsilon
 
         #linear
-        self.epsilon=self.epsilon-0.05
+        self.epsilon=self.epsilon-0.001
 
         #exponential
         #at=self.alpha*self.no_trials
@@ -90,7 +90,7 @@ class LearningAgent(Agent):
         # Set 'state' as a tuple of relevant data for the agent
         #state::: ('right', {'light': 'green', 'oncoming': None, 'right': None, 'left': None})
 
-        state = (waypoint, inputs['light'],inputs['oncoming'],inputs['right'],inputs['left'])
+        state = (waypoint, inputs['light'],inputs['oncoming'],inputs['right'],inputs['left'],deadline)
 
         return state
 
@@ -134,8 +134,8 @@ class LearningAgent(Agent):
                 self.Q[state]['right']=0.0
                 self.Q[state]['left']=0.0
                 self.Q[state][None]=0.0
-        #print "initiallized self.Q:---------"
-        #pprint.pprint(self.Q)
+        print "initiallized self.Q:---------"
+        pprint.pprint(self.Q)
 
         return
 
@@ -218,7 +218,7 @@ def run():
     #   verbose     - set to True to display additional output from the simulation
     #   num_dummies - discrete number of dummy agents in the environment, default is 100
     #   grid_size   - discrete number of intersections (columns, rows), default is (8, 6)
-    env = Environment(verbose=False,num_dummies=100)
+    env = Environment(verbose=True,num_dummies=100)
 
     ##############
     # Create the driving agent
@@ -258,7 +258,7 @@ def run():
     # Flags:
     #   tolerance  - epsilon tolerance before beginning testing, default is 0.05
     #   n_test     - discrete number of testing trials to perform, default is 0
-    sim.run(n_test=10,tolerance=0.01)
+    sim.run(n_test=10,tolerance=0.05)
 
 
 if __name__ == '__main__':
