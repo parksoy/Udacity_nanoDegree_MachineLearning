@@ -56,7 +56,8 @@ class LearningAgent(Agent):
         #print "before self.epsilon update============",self.epsilon
 
         #linear
-        self.epsilon=self.epsilon-0.001
+        self.epsilon=self.epsilon-0.005
+        self.alpha=self.alpha-0.002
 
         #exponential
         #at=self.alpha*self.no_trials
@@ -90,7 +91,22 @@ class LearningAgent(Agent):
         # Set 'state' as a tuple of relevant data for the agent
         #state::: ('right', {'light': 'green', 'oncoming': None, 'right': None, 'left': None})
 
-        state = (waypoint, inputs['light'],inputs['oncoming'],inputs['right'],inputs['left'],deadline)
+        #narrow the range of deadline to deadline_region
+
+        if deadline>=0 and deadline<=5:
+            deadline_region=0
+        elif deadline>5 and deadline<=10:
+            deadline_region=1
+        elif deadline>10 and deadline<=20:
+            deadline_region=2
+        elif deadline>20 and deadline<=30:
+            deadline_region=3
+        elif deadline>30 and deadline<=40:
+            deadline_region=4
+        elif deadline>40 :
+            deadline_region=5
+
+        state = (waypoint, inputs['light'],inputs['oncoming'],inputs['right'],inputs['left'],deadline_region)
 
         return state
 
@@ -134,8 +150,8 @@ class LearningAgent(Agent):
                 self.Q[state]['right']=0.0
                 self.Q[state]['left']=0.0
                 self.Q[state][None]=0.0
-        print "initiallized self.Q:---------"
-        pprint.pprint(self.Q)
+        #print "initiallized self.Q:---------"
+        #pprint.pprint(self.Q)
 
         return
 
@@ -227,7 +243,7 @@ def run():
     #    * epsilon - continuous value for the exploration factor, default is 1
     #    * alpha   - continuous value for the learning rate, default is 0.5
     #initial Q-learning without optimization alpha, epsilon
-    agent = env.create_agent(LearningAgent,learning=True,epsilon=1,alpha=0.9)
+    agent = env.create_agent(LearningAgent,learning=True,epsilon=1,alpha=0.5)
 
     #optimized Q-learning with a AND e variation
     #alpha_init=[0.9,0.7,0.5,0.3] # learning rate,alpha,default 0.5
@@ -251,14 +267,14 @@ def run():
     #   display      - set to False to disable the GUI if PyGame is enabled
     #   log_metrics  - set to True to log trial and simulation results to /logs
     #   optimized    - set to True to change the default log file name
-    sim = Simulator(env, update_delay=0.0001, display=True,log_metrics=True,optimized=True)
+    sim = Simulator(env, update_delay=0.0001, display=False,log_metrics=True,optimized=True)
 
     ##############
     # Run the simulator
     # Flags:
     #   tolerance  - epsilon tolerance before beginning testing, default is 0.05
     #   n_test     - discrete number of testing trials to perform, default is 0
-    sim.run(n_test=10,tolerance=0.05)
+    sim.run(n_test=30,tolerance=0.0001)
 
 
 if __name__ == '__main__':
