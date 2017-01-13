@@ -56,8 +56,8 @@ class LearningAgent(Agent):
         #print "before self.epsilon update============",self.epsilon
 
         #linear
-        self.epsilon=self.epsilon-0.005
-        self.alpha=self.alpha-0.002
+        self.epsilon=self.epsilon-0.001
+        self.alpha=self.alpha-0.0005
 
         #exponential
         #at=self.alpha*self.no_trials
@@ -106,7 +106,7 @@ class LearningAgent(Agent):
         elif deadline>40 :
             deadline_region=5
 
-        state = (waypoint, inputs['light'],inputs['oncoming'],inputs['right'],inputs['left'],deadline_region)
+        state = (waypoint, inputs['light'],inputs['oncoming'],inputs['right'],inputs['left'],deadline)
 
         return state
 
@@ -234,7 +234,7 @@ def run():
     #   verbose     - set to True to display additional output from the simulation
     #   num_dummies - discrete number of dummy agents in the environment, default is 100
     #   grid_size   - discrete number of intersections (columns, rows), default is (8, 6)
-    env = Environment(verbose=True,num_dummies=100)
+    env = Environment(verbose=False,num_dummies=100)
 
     ##############
     # Create the driving agent
@@ -243,7 +243,7 @@ def run():
     #    * epsilon - continuous value for the exploration factor, default is 1
     #    * alpha   - continuous value for the learning rate, default is 0.5
     #initial Q-learning without optimization alpha, epsilon
-    agent = env.create_agent(LearningAgent,learning=True,epsilon=1,alpha=0.5)
+    agent = env.create_agent(LearningAgent,learning=True,epsilon=1,alpha=0.7)
 
     #optimized Q-learning with a AND e variation
     #alpha_init=[0.9,0.7,0.5,0.3] # learning rate,alpha,default 0.5
@@ -274,7 +274,7 @@ def run():
     # Flags:
     #   tolerance  - epsilon tolerance before beginning testing, default is 0.05
     #   n_test     - discrete number of testing trials to perform, default is 0
-    sim.run(n_test=30,tolerance=0.0001)
+    sim.run(n_test=10,tolerance=0.0001)
 
 
 if __name__ == '__main__':
