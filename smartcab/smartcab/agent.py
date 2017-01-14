@@ -61,9 +61,9 @@ class LearningAgent(Agent):
 
         #exponential
         #at=self.alpha*self.no_trials
-        self.epsilon=np.exp(-0.01*self.no_trials)
+        self.epsilon=np.exp(-0.005*self.no_trials)
 
-        self.alpha=np.exp(-0.005*self.no_trials)
+        #self.alpha=self.alpha*np.exp(-0.002*self.no_trials)
         #print "after self.epsilon update============",self.epsilon
 
 
@@ -243,7 +243,7 @@ def run():
     #    * epsilon - continuous value for the exploration factor, default is 1
     #    * alpha   - continuous value for the learning rate, default is 0.5
     #initial Q-learning without optimization alpha, epsilon
-    agent = env.create_agent(LearningAgent,learning=True,epsilon=1,alpha=0.99)
+    agent = env.create_agent(LearningAgent,learning=True,epsilon=1,alpha=0.5)
 
     #optimized Q-learning with a AND e variation
     #alpha_init=[0.9,0.7,0.5,0.3] # learning rate,alpha,default 0.5
@@ -274,7 +274,7 @@ def run():
     # Flags:
     #   tolerance  - epsilon tolerance before beginning testing, default is 0.05
     #   n_test     - discrete number of testing trials to perform, default is 0
-    sim.run(n_test=10,tolerance=0.001)
+    sim.run(n_test=10,tolerance=0.01)
 
 
 if __name__ == '__main__':
