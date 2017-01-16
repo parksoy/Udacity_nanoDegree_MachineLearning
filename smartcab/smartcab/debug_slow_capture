@@ -1,0 +1,612 @@
+Soyoungs-MacBook-Air:smartcab parksoy$ python smartcab/agent.py
+
+/-------------------------
+| Training trial 1
+\-------------------------
+
+Environment.reset(): Trial set up with start = (2, 4), destination = (4, 2), deadline = 20
+Simulating trial. . .
+epsilon = 0.9950; alpha = 0.5000
+
+/-------------------
+| Step 0 Results
+\-------------------
+
+Environment.step(): t = 0
+initiallized self.Q:---------
+{('left', 'green', None, 'forward', 20): {None: 0.0,
+                                          'forward': 0.0,
+                                          'left': 0.0,
+                                          'right': 0.0}}
+Environment.act() [POST]: location: (2, 5), heading: (0, 1), action: forward, reward: 1.58804322886
+Environment.act(): Step data:
+{'action': 'forward',
+ 'deadline': 20,
+ 'inputs': {'left': 'forward',
+            'light': 'green',
+            'oncoming': None,
+            'right': 'left'},
+ 'light': 'green',
+ 'reward': 1.5880432288592365,
+ 'state': ('left', 'green', None, 'forward', 20),
+ 't': 0,
+ 'violation': 0,
+ 'waypoint': 'left'}
+
+maxQidx------: forward
+maxQval------: 0.0
+Updated Q---------------
+{('left', 'green', None, 'forward', 20): {None: 0.0,
+                                          'forward': 0.7940216144296183,
+                                          'left': 0.0,
+                                          'right': 0.0}}
+Agent previous state: ('left', 'green', None, 'forward', 20)
+Agent drove forward instead of left. (rewarded 1.59)
+95% of time remaining to reach destination.
+
+/-------------------
+| Step 1 Results
+\-------------------
+
+Environment.step(): t = 1
+initiallized self.Q:---------
+{('left', 'green', None, 'forward', 20): {None: 0.0,
+                                          'forward': 0.7940216144296183,
+                                          'left': 0.0,
+                                          'right': 0.0},
+ ('left', 'green', None, 'left', 19): {None: 0.0,
+                                       'forward': 0.0,
+                                       'left': 0.0,
+                                       'right': 0.0}}
+Environment.act() [POST]: location: (2, 6), heading: (0, 1), action: forward, reward: 1.33083473293
+Environment.act(): Step data:
+{'action': 'forward',
+ 'deadline': 19,
+ 'inputs': {'left': 'left',
+            'light': 'green',
+            'oncoming': None,
+            'right': 'left'},
+ 'light': 'green',
+ 'reward': 1.3308347329319665,
+ 'state': ('left', 'green', None, 'left', 19),
+ 't': 1,
+ 'violation': 0,
+ 'waypoint': 'left'}
+
+maxQidx------: forward
+maxQval------: 0.0
+Updated Q---------------
+{('left', 'green', None, 'forward', 20): {None: 0.0,
+                                          'forward': 0.7940216144296183,
+                                          'left': 0.0,
+                                          'right': 0.0},
+ ('left', 'green', None, 'left', 19): {None: 0.0,
+                                       'forward': 0.6654173664659833,
+                                       'left': 0.0,
+                                       'right': 0.0}}
+Agent previous state: ('left', 'green', None, 'left', 19)
+Agent drove forward instead of left. (rewarded 1.33)
+90% of time remaining to reach destination.
+
+/-------------------
+| Step 2 Results
+\-------------------
+
+Environment.step(): t = 2
+initiallized self.Q:---------
+{('left', 'green', None, None, 18): {None: 0.0,
+                                     'forward': 0.0,
+                                     'left': 0.0,
+                                     'right': 0.0},
+ ('left', 'green', None, 'forward', 20): {None: 0.0,
+                                          'forward': 0.7940216144296183,
+                                          'left': 0.0,
+                                          'right': 0.0},
+ ('left', 'green', None, 'left', 19): {None: 0.0,
+                                       'forward': 0.6654173664659833,
+                                       'left': 0.0,
+                                       'right': 0.0}}
+Environment.act() [POST]: location: (2, 7), heading: (0, 1), action: forward, reward: 0.442488834669
+Environment.act(): Step data:
+{'action': 'forward',
+ 'deadline': 18,
+ 'inputs': {'left': None,
+            'light': 'green',
+            'oncoming': None,
+            'right': 'forward'},
+ 'light': 'green',
+ 'reward': 0.4424888346690926,
+ 'state': ('left', 'green', None, None, 18),
+ 't': 2,
+ 'violation': 0,
+ 'waypoint': 'left'}
+
+maxQidx------: forward
+maxQval------: 0.0
+Updated Q---------------
+{('left', 'green', None, None, 18): {None: 0.0,
+                                     'forward': 0.2212444173345463,
+                                     'left': 0.0,
+                                     'right': 0.0},
+ ('left', 'green', None, 'forward', 20): {None: 0.0,
+                                          'forward': 0.7940216144296183,
+                                          'left': 0.0,
+                                          'right': 0.0},
+ ('left', 'green', None, 'left', 19): {None: 0.0,
+                                       'forward': 0.6654173664659833,
+                                       'left': 0.0,
+                                       'right': 0.0}}
+Agent previous state: ('left', 'green', None, None, 18)
+Agent drove forward instead of left. (rewarded 0.44)
+85% of time remaining to reach destination.
+
+/-------------------
+| Step 3 Results
+\-------------------
+
+Environment.step(): t = 3
+initiallized self.Q:---------
+{('left', 'green', None, None, 18): {None: 0.0,
+                                     'forward': 0.2212444173345463,
+                                     'left': 0.0,
+                                     'right': 0.0},
+ ('left', 'green', None, 'forward', 20): {None: 0.0,
+                                          'forward': 0.7940216144296183,
+                                          'left': 0.0,
+                                          'right': 0.0},
+ ('left', 'green', None, 'left', 19): {None: 0.0,
+                                       'forward': 0.6654173664659833,
+                                       'left': 0.0,
+                                       'right': 0.0},
+ ('left', 'red', None, None, 17): {None: 0.0,
+                                   'forward': 0.0,
+                                   'left': 0.0,
+                                   'right': 0.0}}
+Environment.act() [POST]: location: (2, 7), heading: (0, 1), action: forward, reward: -10.8486199273
+Environment.act(): Step data:
+{'action': 'forward',
+ 'deadline': 17,
+ 'inputs': {'left': None, 'light': 'red', 'oncoming': None, 'right': 'left'},
+ 'light': 'red',
+ 'reward': -10.848619927287913,
+ 'state': ('left', 'red', None, None, 17),
+ 't': 3,
+ 'violation': 2,
+ 'waypoint': 'left'}
+
+maxQidx------: forward
+maxQval------: 0.0
+Updated Q---------------
+{('left', 'green', None, None, 18): {None: 0.0,
+                                     'forward': 0.2212444173345463,
+                                     'left': 0.0,
+                                     'right': 0.0},
+ ('left', 'green', None, 'forward', 20): {None: 0.0,
+                                          'forward': 0.7940216144296183,
+                                          'left': 0.0,
+                                          'right': 0.0},
+ ('left', 'green', None, 'left', 19): {None: 0.0,
+                                       'forward': 0.6654173664659833,
+                                       'left': 0.0,
+                                       'right': 0.0},
+ ('left', 'red', None, None, 17): {None: 0.0,
+                                   'forward': -5.424309963643957,
+                                   'left': 0.0,
+                                   'right': 0.0}}
+Agent previous state: ('left', 'red', None, None, 17)
+Agent attempted driving forward through a red light. (rewarded -10.85)
+80% of time remaining to reach destination.
+
+/-------------------
+| Step 4 Results
+\-------------------
+
+Environment.step(): t = 4
+initiallized self.Q:---------
+{('left', 'green', None, None, 18): {None: 0.0,
+                                     'forward': 0.2212444173345463,
+                                     'left': 0.0,
+                                     'right': 0.0},
+ ('left', 'green', None, 'forward', 20): {None: 0.0,
+                                          'forward': 0.7940216144296183,
+                                          'left': 0.0,
+                                          'right': 0.0},
+ ('left', 'green', None, 'left', 19): {None: 0.0,
+                                       'forward': 0.6654173664659833,
+                                       'left': 0.0,
+                                       'right': 0.0},
+ ('left', 'red', None, None, 17): {None: 0.0,
+                                   'forward': -5.424309963643957,
+                                   'left': 0.0,
+                                   'right': 0.0},
+ ('left', 'red', 'right', None, 16): {None: 0.0,
+                                      'forward': 0.0,
+                                      'left': 0.0,
+                                      'right': 0.0}}
+Environment.act() [POST]: location: (2, 7), heading: (0, 1), action: forward, reward: -9.56112972336
+Environment.act(): Step data:
+{'action': 'forward',
+ 'deadline': 16,
+ 'inputs': {'left': None, 'light': 'red', 'oncoming': 'right', 'right': None},
+ 'light': 'red',
+ 'reward': -9.561129723360327,
+ 'state': ('left', 'red', 'right', None, 16),
+ 't': 4,
+ 'violation': 2,
+ 'waypoint': 'left'}
+
+maxQidx------: forward
+maxQval------: 0.0
+Updated Q---------------
+{('left', 'green', None, None, 18): {None: 0.0,
+                                     'forward': 0.2212444173345463,
+                                     'left': 0.0,
+                                     'right': 0.0},
+ ('left', 'green', None, 'forward', 20): {None: 0.0,
+                                          'forward': 0.7940216144296183,
+                                          'left': 0.0,
+                                          'right': 0.0},
+ ('left', 'green', None, 'left', 19): {None: 0.0,
+                                       'forward': 0.6654173664659833,
+                                       'left': 0.0,
+                                       'right': 0.0},
+ ('left', 'red', None, None, 17): {None: 0.0,
+                                   'forward': -5.424309963643957,
+                                   'left': 0.0,
+                                   'right': 0.0},
+ ('left', 'red', 'right', None, 16): {None: 0.0,
+                                      'forward': -4.780564861680164,
+                                      'left': 0.0,
+                                      'right': 0.0}}
+Agent previous state: ('left', 'red', 'right', None, 16)
+Agent attempted driving forward through a red light. (rewarded -9.56)
+75% of time remaining to reach destination.
+
+/-------------------
+| Step 5 Results
+\-------------------
+
+Environment.step(): t = 5
+initiallized self.Q:---------
+{('left', 'green', None, None, 15): {None: 0.0,
+                                     'forward': 0.0,
+                                     'left': 0.0,
+                                     'right': 0.0},
+ ('left', 'green', None, None, 18): {None: 0.0,
+                                     'forward': 0.2212444173345463,
+                                     'left': 0.0,
+                                     'right': 0.0},
+ ('left', 'green', None, 'forward', 20): {None: 0.0,
+                                          'forward': 0.7940216144296183,
+                                          'left': 0.0,
+                                          'right': 0.0},
+ ('left', 'green', None, 'left', 19): {None: 0.0,
+                                       'forward': 0.6654173664659833,
+                                       'left': 0.0,
+                                       'right': 0.0},
+ ('left', 'red', None, None, 17): {None: 0.0,
+                                   'forward': -5.424309963643957,
+                                   'left': 0.0,
+                                   'right': 0.0},
+ ('left', 'red', 'right', None, 16): {None: 0.0,
+                                      'forward': -4.780564861680164,
+                                      'left': 0.0,
+                                      'right': 0.0}}
+Environment.act() [POST]: location: (2, 2), heading: (0, 1), action: forward, reward: 1.05910878675
+Environment.act(): Step data:
+{'action': 'forward',
+ 'deadline': 15,
+ 'inputs': {'left': None, 'light': 'green', 'oncoming': None, 'right': None},
+ 'light': 'green',
+ 'reward': 1.059108786750152,
+ 'state': ('left', 'green', None, None, 15),
+ 't': 5,
+ 'violation': 0,
+ 'waypoint': 'left'}
+
+maxQidx------: forward
+maxQval------: 0.0
+Updated Q---------------
+{('left', 'green', None, None, 15): {None: 0.0,
+                                     'forward': 0.529554393375076,
+                                     'left': 0.0,
+                                     'right': 0.0},
+ ('left', 'green', None, None, 18): {None: 0.0,
+                                     'forward': 0.2212444173345463,
+                                     'left': 0.0,
+                                     'right': 0.0},
+ ('left', 'green', None, 'forward', 20): {None: 0.0,
+                                          'forward': 0.7940216144296183,
+                                          'left': 0.0,
+                                          'right': 0.0},
+ ('left', 'green', None, 'left', 19): {None: 0.0,
+                                       'forward': 0.6654173664659833,
+                                       'left': 0.0,
+                                       'right': 0.0},
+ ('left', 'red', None, None, 17): {None: 0.0,
+                                   'forward': -5.424309963643957,
+                                   'left': 0.0,
+                                   'right': 0.0},
+ ('left', 'red', 'right', None, 16): {None: 0.0,
+                                      'forward': -4.780564861680164,
+                                      'left': 0.0,
+                                      'right': 0.0}}
+Agent previous state: ('left', 'green', None, None, 15)
+Agent drove forward instead of left. (rewarded 1.06)
+70% of time remaining to reach destination.
+
+/-------------------
+| Step 6 Results
+\-------------------
+
+Environment.step(): t = 6
+initiallized self.Q:---------
+{('left', 'green', None, None, 15): {None: 0.0,
+                                     'forward': 0.529554393375076,
+                                     'left': 0.0,
+                                     'right': 0.0},
+ ('left', 'green', None, None, 18): {None: 0.0,
+                                     'forward': 0.2212444173345463,
+                                     'left': 0.0,
+                                     'right': 0.0},
+ ('left', 'green', None, 'forward', 20): {None: 0.0,
+                                          'forward': 0.7940216144296183,
+                                          'left': 0.0,
+                                          'right': 0.0},
+ ('left', 'green', None, 'left', 19): {None: 0.0,
+                                       'forward': 0.6654173664659833,
+                                       'left': 0.0,
+                                       'right': 0.0},
+ ('left', 'green', 'forward', None, 14): {None: 0.0,
+                                          'forward': 0.0,
+                                          'left': 0.0,
+                                          'right': 0.0},
+ ('left', 'red', None, None, 17): {None: 0.0,
+                                   'forward': -5.424309963643957,
+                                   'left': 0.0,
+                                   'right': 0.0},
+ ('left', 'red', 'right', None, 16): {None: 0.0,
+                                      'forward': -4.780564861680164,
+                                      'left': 0.0,
+                                      'right': 0.0}}
+Environment.act() [POST]: location: (2, 3), heading: (0, 1), action: forward, reward: 1.16666403642
+Environment.act(): Step data:
+{'action': 'forward',
+ 'deadline': 14,
+ 'inputs': {'left': None,
+            'light': 'green',
+            'oncoming': 'forward',
+            'right': 'forward'},
+ 'light': 'green',
+ 'reward': 1.1666640364198884,
+ 'state': ('left', 'green', 'forward', None, 14),
+ 't': 6,
+ 'violation': 0,
+ 'waypoint': 'left'}
+
+maxQidx------: forward
+maxQval------: 0.0
+Updated Q---------------
+{('left', 'green', None, None, 15): {None: 0.0,
+                                     'forward': 0.529554393375076,
+                                     'left': 0.0,
+                                     'right': 0.0},
+ ('left', 'green', None, None, 18): {None: 0.0,
+                                     'forward': 0.2212444173345463,
+                                     'left': 0.0,
+                                     'right': 0.0},
+ ('left', 'green', None, 'forward', 20): {None: 0.0,
+                                          'forward': 0.7940216144296183,
+                                          'left': 0.0,
+                                          'right': 0.0},
+ ('left', 'green', None, 'left', 19): {None: 0.0,
+                                       'forward': 0.6654173664659833,
+                                       'left': 0.0,
+                                       'right': 0.0},
+ ('left', 'green', 'forward', None, 14): {None: 0.0,
+                                          'forward': 0.5833320182099442,
+                                          'left': 0.0,
+                                          'right': 0.0},
+ ('left', 'red', None, None, 17): {None: 0.0,
+                                   'forward': -5.424309963643957,
+                                   'left': 0.0,
+                                   'right': 0.0},
+ ('left', 'red', 'right', None, 16): {None: 0.0,
+                                      'forward': -4.780564861680164,
+                                      'left': 0.0,
+                                      'right': 0.0}}
+Agent previous state: ('left', 'green', 'forward', None, 14)
+Agent drove forward instead of left. (rewarded 1.17)
+65% of time remaining to reach destination.
+
+/-------------------
+| Step 7 Results
+\-------------------
+
+Environment.step(): t = 7
+initiallized self.Q:---------
+{('left', 'green', None, None, 15): {None: 0.0,
+                                     'forward': 0.529554393375076,
+                                     'left': 0.0,
+                                     'right': 0.0},
+ ('left', 'green', None, None, 18): {None: 0.0,
+                                     'forward': 0.2212444173345463,
+                                     'left': 0.0,
+                                     'right': 0.0},
+ ('left', 'green', None, 'forward', 20): {None: 0.0,
+                                          'forward': 0.7940216144296183,
+                                          'left': 0.0,
+                                          'right': 0.0},
+ ('left', 'green', None, 'left', 19): {None: 0.0,
+                                       'forward': 0.6654173664659833,
+                                       'left': 0.0,
+                                       'right': 0.0},
+ ('left', 'green', 'forward', None, 14): {None: 0.0,
+                                          'forward': 0.5833320182099442,
+                                          'left': 0.0,
+                                          'right': 0.0},
+ ('left', 'red', None, None, 17): {None: 0.0,
+                                   'forward': -5.424309963643957,
+                                   'left': 0.0,
+                                   'right': 0.0},
+ ('left', 'red', 'forward', None, 13): {None: 0.0,
+                                        'forward': 0.0,
+                                        'left': 0.0,
+                                        'right': 0.0},
+ ('left', 'red', 'right', None, 16): {None: 0.0,
+                                      'forward': -4.780564861680164,
+                                      'left': 0.0,
+                                      'right': 0.0}}
+Environment.act() [POST]: location: (2, 3), heading: (0, 1), action: forward, reward: -10.8355885974
+Environment.act(): Step data:
+{'action': 'forward',
+ 'deadline': 13,
+ 'inputs': {'left': None,
+            'light': 'red',
+            'oncoming': 'forward',
+            'right': None},
+ 'light': 'red',
+ 'reward': -10.835588597444854,
+ 'state': ('left', 'red', 'forward', None, 13),
+ 't': 7,
+ 'violation': 2,
+ 'waypoint': 'left'}
+
+maxQidx------: forward
+maxQval------: 0.0
+Updated Q---------------
+{('left', 'green', None, None, 15): {None: 0.0,
+                                     'forward': 0.529554393375076,
+                                     'left': 0.0,
+                                     'right': 0.0},
+ ('left', 'green', None, None, 18): {None: 0.0,
+                                     'forward': 0.2212444173345463,
+                                     'left': 0.0,
+                                     'right': 0.0},
+ ('left', 'green', None, 'forward', 20): {None: 0.0,
+                                          'forward': 0.7940216144296183,
+                                          'left': 0.0,
+                                          'right': 0.0},
+ ('left', 'green', None, 'left', 19): {None: 0.0,
+                                       'forward': 0.6654173664659833,
+                                       'left': 0.0,
+                                       'right': 0.0},
+ ('left', 'green', 'forward', None, 14): {None: 0.0,
+                                          'forward': 0.5833320182099442,
+                                          'left': 0.0,
+                                          'right': 0.0},
+ ('left', 'red', None, None, 17): {None: 0.0,
+                                   'forward': -5.424309963643957,
+                                   'left': 0.0,
+                                   'right': 0.0},
+ ('left', 'red', 'forward', None, 13): {None: 0.0,
+                                        'forward': -5.417794298722427,
+                                        'left': 0.0,
+                                        'right': 0.0},
+ ('left', 'red', 'right', None, 16): {None: 0.0,
+                                      'forward': -4.780564861680164,
+                                      'left': 0.0,
+                                      'right': 0.0}}
+Agent previous state: ('left', 'red', 'forward', None, 13)
+Agent attempted driving forward through a red light. (rewarded -10.84)
+60% of time remaining to reach destination.
+
+/-------------------
+| Step 8 Results
+\-------------------
+
+Environment.step(): t = 8
+initiallized self.Q:---------
+{('left', 'green', None, None, 15): {None: 0.0,
+                                     'forward': 0.529554393375076,
+                                     'left': 0.0,
+                                     'right': 0.0},
+ ('left', 'green', None, None, 18): {None: 0.0,
+                                     'forward': 0.2212444173345463,
+                                     'left': 0.0,
+                                     'right': 0.0},
+ ('left', 'green', None, 'forward', 20): {None: 0.0,
+                                          'forward': 0.7940216144296183,
+                                          'left': 0.0,
+                                          'right': 0.0},
+ ('left', 'green', None, 'left', 19): {None: 0.0,
+                                       'forward': 0.6654173664659833,
+                                       'left': 0.0,
+                                       'right': 0.0},
+ ('left', 'green', 'forward', None, 14): {None: 0.0,
+                                          'forward': 0.5833320182099442,
+                                          'left': 0.0,
+                                          'right': 0.0},
+ ('left', 'red', None, None, 17): {None: 0.0,
+                                   'forward': -5.424309963643957,
+                                   'left': 0.0,
+                                   'right': 0.0},
+ ('left', 'red', 'forward', None, 13): {None: 0.0,
+                                        'forward': -5.417794298722427,
+                                        'left': 0.0,
+                                        'right': 0.0},
+ ('left', 'red', 'left', None, 12): {None: 0.0,
+                                     'forward': 0.0,
+                                     'left': 0.0,
+                                     'right': 0.0},
+ ('left', 'red', 'right', None, 16): {None: 0.0,
+                                      'forward': -4.780564861680164,
+                                      'left': 0.0,
+                                      'right': 0.0}}
+Environment.act() [POST]: location: (2, 3), heading: (0, 1), action: forward, reward: -10.9757508082
+Environment.act(): Step data:
+{'action': 'forward',
+ 'deadline': 12,
+ 'inputs': {'left': None, 'light': 'red', 'oncoming': 'left', 'right': None},
+ 'light': 'red',
+ 'reward': -10.975750808165946,
+ 'state': ('left', 'red', 'left', None, 12),
+ 't': 8,
+ 'violation': 2,
+ 'waypoint': 'left'}
+
+maxQidx------: forward
+maxQval------: 0.0
+Updated Q---------------
+{('left', 'green', None, None, 15): {None: 0.0,
+                                     'forward': 0.529554393375076,
+                                     'left': 0.0,
+                                     'right': 0.0},
+ ('left', 'green', None, None, 18): {None: 0.0,
+                                     'forward': 0.2212444173345463,
+                                     'left': 0.0,
+                                     'right': 0.0},
+ ('left', 'green', None, 'forward', 20): {None: 0.0,
+                                          'forward': 0.7940216144296183,
+                                          'left': 0.0,
+                                          'right': 0.0},
+ ('left', 'green', None, 'left', 19): {None: 0.0,
+                                       'forward': 0.6654173664659833,
+                                       'left': 0.0,
+                                       'right': 0.0},
+ ('left', 'green', 'forward', None, 14): {None: 0.0,
+                                          'forward': 0.5833320182099442,
+                                          'left': 0.0,
+                                          'right': 0.0},
+ ('left', 'red', None, None, 17): {None: 0.0,
+                                   'forward': -5.424309963643957,
+                                   'left': 0.0,
+                                   'right': 0.0},
+ ('left', 'red', 'forward', None, 13): {None: 0.0,
+                                        'forward': -5.417794298722427,
+                                        'left': 0.0,
+                                        'right': 0.0},
+ ('left', 'red', 'left', None, 12): {None: 0.0,
+                                     'forward': -5.487875404082973,
+                                     'left': 0.0,
+                                     'right': 0.0},
+ ('left', 'red', 'right', None, 16): {None: 0.0,
+                                      'forward': -4.780564861680164,
+                                      'left': 0.0,
+                                      'right': 0.0}}
+Agent previous state: ('left', 'red', 'left', None, 12)
+Agent attempted driving forward through a red light. (rewarded -10.98)
+55% of time remaining to reach destination.
+
+Simulation ended. . .
+Soyoungs-MacBook-Air:smartcab park

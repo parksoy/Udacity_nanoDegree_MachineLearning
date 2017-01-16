@@ -64,6 +64,7 @@ class LearningAgent(Agent):
         self.epsilon=np.exp(-0.005*self.no_trials)
 
         #self.alpha=self.alpha*np.exp(-0.002*self.no_trials)
+        self.alpha=self.alpha-0.0005
         #print "after self.epsilon update============",self.epsilon
 
 
@@ -99,14 +100,13 @@ class LearningAgent(Agent):
             deadline_region=1
         elif deadline>10 and deadline<=20:
             deadline_region=2
-        elif deadline>20 and deadline<=30:
+        elif deadline>30:
             deadline_region=3
-        elif deadline>30 and deadline<=40:
-            deadline_region=4
-        elif deadline>40 :
-            deadline_region=5
 
-        state = (waypoint, inputs['light'],inputs['oncoming'],inputs['right'],inputs['left'],deadline)#
+        #state = (waypoint, inputs['light'],inputs['oncoming'],inputs['left'])#
+        state = (waypoint, inputs['light'], ('oncoming',inputs['oncoming']), ('left',inputs['left']))
+
+        #state=(waypoint,isSafe,deadline_region)
 
         return state
 
@@ -274,7 +274,7 @@ def run():
     # Flags:
     #   tolerance  - epsilon tolerance before beginning testing, default is 0.05
     #   n_test     - discrete number of testing trials to perform, default is 0
-    sim.run(n_test=10,tolerance=0.01)
+    sim.run(n_test=10,tolerance=0.05)
 
 
 if __name__ == '__main__':
