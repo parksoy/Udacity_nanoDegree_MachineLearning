@@ -176,9 +176,16 @@ class LearningAgent(Agent):
         if self.learning==False:
             action= random.choice(self.env.valid_actions)
         # When learning, choose a random action with 'epsilon' probability
+        elif self.learning==True and self.epsilon>0.95:
+            action=random.choice(self.env.valid_actions)
         #   Otherwise, choose an action with the highest Q-value for the current state
         else:
-            action=max(self.Q[state].iteritems(), key=operator.itemgetter(1))[0]
+            maxQval=self.get_maxQ(state)
+            actionoptions=[]
+            for key,val in self.Q[state].items():
+                if val==maxQval:
+                    actionoptions.append(key)
+                    action=random.choice(actionoptions) #max(self.Q[state].iteritems(), key=operator.itemgetter(1))[0]
 
 
         #print "and this action was chosen-",action
@@ -274,7 +281,7 @@ def run():
     # Flags:
     #   tolerance  - epsilon tolerance before beginning testing, default is 0.05
     #   n_test     - discrete number of testing trials to perform, default is 0
-    sim.run(n_test=10,tolerance=0.05)
+    sim.run(n_test=10,tolerance=0.2)
 
 
 if __name__ == '__main__':
