@@ -1,5 +1,7 @@
 #https://github.com/veeresht/MLNanoDegree/blob/master/project4/smartcab/agent.py
 #https://github.com/tcya/Q-Learning-Smartcab/blob/master/smartcab/agent.py
+#https://discussions.udacity.com/t/this-is-a-very-bad-project/208281/6
+
 import random
 import math
 from environment import Agent, Environment
@@ -26,7 +28,14 @@ class LearningAgent(Agent):
         self.Q =dict()           #Create a Q-table which will be a dictionary of tuples
         self.epsilon = epsilon   # Random exploration factor
         self.alpha = alpha       # Learning factor
-        self.gamma=1 #discount
+        #self.gamma=1 #discount-Reviewer1 says not to use it.
+        '''
+        if you were to use gamma > 0, the maximum Q-value of interest here would be the one
+        for the next state, not the one for the current state. The idea is to discount future
+        rewards so that the agent will consider them when taking this one immediate action.
+        But, as discussed later on in the notebook, there is no need for taking future rewards
+        into account in this setting.
+        '''
 
 
         ###########
@@ -90,20 +99,7 @@ class LearningAgent(Agent):
         ## TO DO ##
         ###########
         # Set 'state' as a tuple of relevant data for the agent
-        #state::: ('right', {'light': 'green', 'oncoming': None, 'right': None, 'left': None})
-
-        #narrow the range of deadline to deadline_region
-
-        if deadline>=0 and deadline<=5:
-            deadline_region=0
-        elif deadline>5 and deadline<=10:
-            deadline_region=1
-        elif deadline>10 and deadline<=20:
-            deadline_region=2
-        elif deadline>30:
-            deadline_region=3
-
-        #state = (waypoint, inputs['light'],inputs['oncoming'],inputs['left'])#
+        #state = (waypoint, inputs['light'],inputs['oncoming'],inputs['left'])
         state = (waypoint, inputs['light'], ('oncoming',inputs['oncoming']), ('left',inputs['left']))
 
         #state=(waypoint,isSafe,deadline_region)
@@ -120,8 +116,11 @@ class LearningAgent(Agent):
         ###########
         # Calculate the maximum Q-value of all actions for a given state
 
-        maxQidx=max(self.Q[self.state].iteritems(), key=operator.itemgetter(1))[0]
-        maxQval=self.Q[self.state][maxQidx]
+        #maxQidx=max(self.Q[self.state].iteritems(), key=operator.itemgetter(1))[0]
+        #maxQval=self.Q[self.state][maxQidx]
+
+        #Reviwer1 suggests a simpler way
+        maxQval = max(self.Q[state].values())
 
         #print "\nmaxQidx------:", maxQidx
         #print "maxQval------:", maxQval
@@ -153,6 +152,12 @@ class LearningAgent(Agent):
         #print "initiallized self.Q:---------"
         #pprint.pprint(self.Q)
 
+                '''
+                #reviewer1 suggests:
+                #https://www.python.org/dev/peps/pep-0274/
+                if (self.learning) and (state not in self.Q):
+                    self.Q[state] = {action: 0 for action in self.valid_actions}
+                '''
         return
 
 
@@ -175,8 +180,16 @@ class LearningAgent(Agent):
         # When not learning, choose a random action
         if self.learning==False:
             action= random.choice(self.env.valid_actions)
+
+        #elif self.learning==True and self.epsilon>0.95: #first submission
+
         # When learning, choose a random action with 'epsilon' probability
-        elif self.learning==True and self.epsilon>0.95:
+        #Reviewer1 pointed here that "self.epsilon should be compared against a random number
+        #between 0 and 1 to check whether the agent will perform an action at random or not.
+        #Instead, you are always checking self.epsilon against 0.95."
+
+
+        elif self.learning==True and self.epsilon > random.random():
             action=random.choice(self.env.valid_actions)
         #   Otherwise, choose an action with the highest Q-value for the current state
         else:
