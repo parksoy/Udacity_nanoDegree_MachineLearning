@@ -149,8 +149,7 @@ class LearningAgent(Agent):
                 self.Q[state]['right']=0.0
                 self.Q[state]['left']=0.0
                 self.Q[state][None]=0.0
-        #print "initiallized self.Q:---------"
-        #pprint.pprint(self.Q)
+
 
                 '''
                 #reviewer1 suggests:
@@ -158,6 +157,10 @@ class LearningAgent(Agent):
                 if (self.learning) and (state not in self.Q):
                     self.Q[state] = {action: 0 for action in self.valid_actions}
                 '''
+
+        #print "initiallized self.Q:---------"
+        #pprint.pprint(self.Q)
+
         return
 
 
@@ -189,6 +192,8 @@ class LearningAgent(Agent):
         #Instead, you are always checking self.epsilon against 0.95."
 
 
+
+
         elif self.learning==True and self.epsilon > random.random():
             action=random.choice(self.env.valid_actions)
         #   Otherwise, choose an action with the highest Q-value for the current state
@@ -198,7 +203,7 @@ class LearningAgent(Agent):
             for key,val in self.Q[state].items():
                 if val==maxQval:
                     actionoptions.append(key)
-                    action=random.choice(actionoptions) #max(self.Q[state].iteritems(), key=operator.itemgetter(1))[0]
+            action=random.choice(actionoptions) ##reviewer2 pointed out indentation mistake
 
 
         #print "and this action was chosen-",action
@@ -215,11 +220,19 @@ class LearningAgent(Agent):
         ## TO DO ##
         ###########
         # When learning, implement the value iteration update rule
+
+        #reviewer2 pointed out to
+        #make sure your Q-Learning algorithm is only updated when learning is True
+        if self.learning==True :
+
         #   Use only the learning rate 'alpha' (do not use the discount factor 'gamma')
 
 
-        self.Q[state][action] = \
-            (1 - self.alpha)*self.Q[state][action] + self.alpha*(reward + self.get_maxQ(state))
+        #Reviewer2 pointed gamma is 1:the future rewards don't matter
+        #self.Q[state][action] = (1 - self.alpha)*self.Q[state][action] + self.alpha*(reward + self.get_maxQ(state))
+        #therefore,
+        #self.Q[self.state][action] = (1.0 - self.alpha) * self.Q[self.state][action] + self.alpha * (reward + 0 * 0 * maxNextQ)
+            self.Q[self.state][action] = (1.0 - self.alpha) * self.Q[self.state][action] + self.alpha * reward
         #print "Updated Q---------------"
         #pprint.pprint(self.Q)
 
